@@ -1,0 +1,391 @@
+/* 기본 스타일 초기화 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 폰트 및 배경 설정 (무난함 & 깔끔함) */
+body {
+    font-family: 'Noto Sans KR', sans-serif; /* 고딕 계열 폰트 */
+    background-color: #f4f4f7; /* 아주 연한 회색 배경 */
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 헤더 (상단 메뉴) */
+header {
+    background-color: #1e88e5; /* 학교 상징색으로 자주 사용되는 파란색 */
+    color: white;
+    padding: 15px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header h1 {
+    font-size: 1.8em;
+    font-weight: 700;
+}
+
+/* 내비게이션 (직관성) */
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+    font-weight: 500;
+    transition: background-color 0.3s;
+    border-radius: 4px;
+}
+
+nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* 호버 시 부드러운 배경 변화 */
+}
+
+/* 맛집 목록 레이아웃 (이용 편의성 & 카드형) */
+.restaurant-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 반응형 그리드 */
+    gap: 25px;
+    padding-top: 30px;
+}
+
+/* 맛집 카드 디자인 (깔끔함 & 정보 강조) */
+.restaurant-card {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.restaurant-card:hover {
+    transform: translateY(-5px); /* 호버 시 약간 뜸 */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* 그림자 진해짐 */
+}
+
+.restaurant-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.card-content h3 {
+    font-size: 1.5em;
+    margin-bottom: 5px;
+    color: #1e88e5; /* 포인트 색상 */
+}
+
+.category {
+    font-size: 0.9em;
+    color: #6c757d;
+    margin-bottom: 8px;
+}
+
+.rating {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #ffc107; /* 별점 색상 */
+    margin-bottom: 10px;
+}
+
+.summary {
+    margin-bottom: 15px;
+    font-size: 1em;
+    height: 45px; /* 줄 수 제한을 위한 높이 설정 */
+    overflow: hidden;
+}
+
+.view-detail {
+    display: inline-block;
+    background-color: #1e88e5;
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.view-detail:hover {
+    background-color: #1565c0;
+}
+
+/* 푸터 (하단 정보) */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #e9ecef; /* 헤더보다 연한 배경 */
+    color: #6c757d;
+    margin-top: 40px;
+    font-size: 0.9em;
+}
+
+/* --- 모바일 반응형 디자인 (@media) --- */
+@media (max-width: 768px) {
+    /* 헤더 세로로 변경 */
+    .header-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav ul {
+        flex-wrap: wrap; /* 메뉴가 많을 경우 줄 바꿈 */
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    nav ul li a {
+        padding: 5px 10px;
+        margin: 5px;
+        font-size: 0.9em;
+    }
+
+    .restaurant-list {
+        grid-template-columns: 1fr; /* 모바일에서 카드를 한 줄에 하나씩 */
+    }
+
+    .restaurant-card img {
+        height: 150px; /* 모바일에서 이미지 높이 줄이기 */
+    }
+}
+
+/* ============================= */
+/*  상세 페이지 (hyeonga.html)  */
+/* ============================= */
+
+.detail-page {
+    padding: 40px 0;
+    background: linear-gradient(135deg, #fff7f0 0%, #fff 45%, #f5f7ff 100%);
+}
+
+.detail-card {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 32px 28px 36px;
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.06);
+}
+
+/* 상단 영역 (사진 + 기본 정보) */
+.detail-top {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+    align-items: center;
+}
+
+.detail-image {
+    width: 320px;
+    max-width: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+.detail-info {
+    flex: 1 1 260px;
+}
+
+/* 뱃지 */
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    margin-right: 6px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.badge-korean {
+    background: #fff0e0;
+    color: #d16625;
+}
+
+.badge-hot {
+    background: #ffe6f0;
+    color: #d21e5f;
+}
+
+/* 텍스트들 */
+.detail-info h2 {
+    margin: 10px 0 4px;
+    font-size: 1.6rem;
+}
+
+.detail-tags {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 6px;
+}
+
+.detail-rating {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.detail-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #444;
+}
+
+/* 메뉴 섹션 */
+.menu-section {
+    margin-top: 18px;
+}
+
+.menu-section h3 {
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.menu-column h4 {
+    margin: 12px 0 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    padding-bottom: 4px;
+    border-bottom: 2px solid #f1f1f1;
+}
+
+.menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-list li {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 10px;
+    border-radius: 12px;
+    margin-bottom: 6px;
+    background: #fafafa;
+    transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.1s ease;
+}
+
+.menu-list li:hover {
+    background: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+}
+
+.menu-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.menu-desc {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.menu-price {
+    font-size: 0.95rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* 뒤로가기 버튼 */
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 28px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: #222;
+    color: #fff;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.back-button:hover {
+    background: #444;
+    transform: translateY(-1px);
+}
+
+/* ============================= */
+/*  현가네 길찾기 플로팅 버튼   */
+/* ============================= */
+
+.floating-nav {
+    position: fixed;          /* 화면에 고정 */
+    right: 24px;              /* 오른쪽에서 24px */
+    bottom: 24px;             /* 아래에서 24px */
+    z-index: 1000;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 12px 18px;
+    border-radius: 999px;     /* 동그랗게 */
+    background: #2563eb;
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 12px 28px rgba(37, 99, 235, 0.55);
+
+    transition: transform 0.15s ease, box-shadow 0.15s ease,
+                background-color 0.15s ease;
+}
+
+.floating-nav:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+    box-shadow: 0 16px 34px rgba(37, 99, 235, 0.7);
+}
+
+.floating-nav:active {
+    transform: translateY(0);
+    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.5);
+}
+
+/* 모바일에서 너무 오른쪽 아래로 몰리지 않게 살짝 조정 */
+@media (max-width: 640px) {
+    .floating-nav {
+        right: 16px;
+        bottom: 16px;
+        font-size: 0.85rem;
+        padding: 10px 16px;
+    }
+}
