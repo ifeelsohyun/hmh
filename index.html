@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-        /* 🔥 오늘의 추천 메뉴 스위치 공통 스타일 */
+        /* 🔥 오늘의 추천 메뉴 스위치 */
         #recommend-switch {
             position: fixed;
             top: 20px;
@@ -45,15 +45,51 @@
             background: #ffb300;
         }
 
-        /* 페이지네이션 공통 */
+        /* 🟢 제휴 업체 스위치 */
+        #partner-switch {
+            position: fixed;
+            top: 20px;
+            right: 120px;
+            width: 85px;
+            height: 130px;
+            background: #ffffff;
+            border-radius: 45px;
+            border: 3px solid #4ade80;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 12px;
+            cursor: grab;
+            user-select: none;
+            z-index: 2000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+        }
+
+        #partner-switch .switch-handle {
+            width: 70%;
+            height: 45px;
+            background: #86efac;
+            border-radius: 22px;
+            text-align: center;
+            font-size: 15px;
+            color: #333;
+            line-height: 45px;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+
+        #partner-switch.dragging .switch-handle {
+            background: #4ade80;
+        }
+
+        /* 페이지네이션 */
         .pagination {
             margin: 30px auto;
             text-align: center;
             font-size: 20px;
         }
 
-        .pagination a,
-        .pagination span {
+        .pagination a, .pagination span {
             margin: 0 10px;
             text-decoration: none;
             color: #333;
@@ -70,6 +106,11 @@
 <!-- 🔥 오늘의 추천 메뉴 스위치 -->
 <div id="recommend-switch">
     <div class="switch-handle">이건어때▼</div>
+</div>
+
+<!-- 🟢 제휴 업체 스위치 -->
+<div id="partner-switch">
+    <div class="switch-handle">제휴업체▼</div>
 </div>
 
 <header>
@@ -161,7 +202,7 @@
         <!-- 🍲 f6 도야짬뽕 -->
         <article class="restaurant-card" id="Chinese">
             <img src="https://cdn.imweb.me/upload/S20210319b1bb7a43ae18f/bb3cda1f3954b.png"
-                 alt="도야짬뽕 국물 짬뽕 이미지">
+                 alt="도야짬뽕 짬뽕 이미지">
             <div class="card-content">
                 <h3>🍲 도야짬뽕</h3>
                 <p class="category">#중식 #짬뽕맛집</p>
@@ -200,7 +241,7 @@
         <!-- 🍜 f9 보배반점 -->
         <article class="restaurant-card" id="Chinese">
             <img src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20251020_286%2F17609224192950oUg4_JPEG%2FIMG_1252_1.jpg"
-                 alt="보배반점 고기짬뽕 이미지">
+                 alt="보배반점 짬뽕 이미지">
             <div class="card-content">
                 <h3>🍜 보배반점 안산한양대점</h3>
                 <p class="category">#중식 #짬뽕</p>
@@ -224,7 +265,7 @@
 </footer>
 
 <script>
-/* 🔥 드래그 스위치 기능 (공통) */
+/* 🔥 이건어때 스위치 */
 const switchBox = document.getElementById("recommend-switch");
 const handle = switchBox.querySelector(".switch-handle");
 let isDragging = false;
@@ -253,6 +294,37 @@ document.addEventListener("mouseup", () => {
     isDragging = false;
     switchBox.classList.remove("dragging");
     handle.style.transform = "translateY(0)";
+});
+
+/* 🟢 제휴업체 스위치 */
+const partnerBox = document.getElementById("partner-switch");
+const partnerHandle = partnerBox.querySelector(".switch-handle");
+let partnerDrag = false;
+let partnerStart = 0;
+
+partnerHandle.addEventListener("mousedown", (e) => {
+    partnerDrag = true;
+    partnerStart = e.clientY;
+    partnerBox.classList.add("dragging");
+});
+
+document.addEventListener("mousemove", (e) => {
+    if (!partnerDrag) return;
+    let moveY = e.clientY - partnerStart;
+
+    if (moveY > 0 && moveY < 90) {
+        partnerHandle.style.transform = `translateY(${moveY}px)`;
+    }
+
+    if (moveY >= 90) {
+        window.location.href = "partner-drink.html";
+    }
+});
+
+document.addEventListener("mouseup", () => {
+    partnerDrag = false;
+    partnerBox.classList.remove("dragging");
+    partnerHandle.style.transform = "translateY(0)";
 });
 </script>
 

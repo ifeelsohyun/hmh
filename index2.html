@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-        /* 🔥 오늘의 추천 메뉴 스위치 (index랑 통일) */
+        /* 🔥 오늘의 추천 메뉴 스위치 */
         #recommend-switch {
             position: fixed;
             top: 20px;
@@ -45,6 +45,43 @@
             background: #ffb300;
         }
 
+        /* 🟢 제휴 업체 스위치 */
+        #partner-switch {
+            position: fixed;
+            top: 20px;
+            right: 120px; /* 이건어때 왼쪽에 나란히 */
+            width: 85px;
+            height: 130px;
+            background: #ffffff;
+            border-radius: 45px;
+            border: 3px solid #4ade80;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 12px;
+            cursor: grab;
+            user-select: none;
+            z-index: 2000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+        }
+
+        #partner-switch .switch-handle {
+            width: 70%;
+            height: 45px;
+            background: #86efac;
+            border-radius: 22px;
+            text-align: center;
+            font-size: 15px;
+            color: #333;
+            line-height: 45px;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+
+        #partner-switch.dragging .switch-handle {
+            background: #4ade80;
+        }
+
         /* 페이지네이션 */
         .pagination {
             margin: 30px auto;
@@ -52,8 +89,7 @@
             font-size: 20px;
         }
 
-        .pagination a,
-        .pagination span {
+        .pagination a, .pagination span {
             margin: 0 10px;
             text-decoration: none;
             color: #333;
@@ -72,11 +108,16 @@
     <div class="switch-handle">이건어때▼</div>
 </div>
 
+<!-- 🟢 제휴 업체 스위치 -->
+<div id="partner-switch">
+    <div class="switch-handle">제휴업체▼</div>
+</div>
+
 <header>
     <div class="header-container">
         <h1>🍔 우리 학교 앞 맛집 지도</h1>
 
-        <!-- 🔥 상단 메뉴 (전체 / 한식 / 양식 / 일식 / 중식) -->
+        <!-- 상단 카테고리 메뉴 -->
         <nav>
             <ul>
                 <li><a href="index.html">전체</a></li>
@@ -105,7 +146,7 @@
             </div>
         </article>
 
-        <!-- 🔥 f11 대홍훠궈샤브샤브 -->
+        <!-- 🔥 f11 대홍훠궈샤브샤브 (메인 브랜치 이미지 사용) -->
         <article class="restaurant-card" id="Chinese">
             <img src="https://i.namu.wiki/i/mqZingBQr80WuH3zHWSw4sKke1Ks7CR-eEZ75cDxXHcaj6vM9GXowAlhhnwx8_6xOFkQ4kF2EJB1BfCieMbBaA.webp"
                  alt="대홍훠궈샤브샤브 훠궈 냄비 이미지">
@@ -134,7 +175,7 @@
         <!-- 🍝 f13 파앤피파스타하우스 -->
         <article class="restaurant-card" id="western">
             <img src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20250225_116%2F1740482346534x8hgr_JPEG%2FKakaoTalk_Photo_2025-02-25-20-11-20_002.jpeg"
-                 alt="파앤피파스타하우스 파스타 이미지">
+                 alt="파앤피파스타하우스 대표 파스타 사진">
             <div class="card-content">
                 <h3>🍝 파앤피파스타하우스</h3>
                 <p class="category">#양식 #파스타 #에리카맛집</p>
@@ -147,7 +188,7 @@
         <!-- 🌯 f14 밀플랜비 한양대에리카점 -->
         <article class="restaurant-card" id="western">
             <img src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20250226_220%2F17405417214426fGdm_JPEG%2FScreenshot_20220605-104848_Coupang_Eats.jpg"
-                 alt="밀플랜비 부리또 이미지">
+                 alt="밀플랜비 부리또 대표 메뉴 사진">
             <div class="card-content">
                 <h3>🌯 밀플랜비 한양대에리카점</h3>
                 <p class="category">#양식 #부리또 #핫도그</p>
@@ -160,7 +201,7 @@
         <!-- 🍕 f15 페퍼로니버튼 에리카점 -->
         <article class="restaurant-card" id="western">
             <img src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20201130_295%2F1606725874428xspkf_JPEG%2FCMU-1RYFKoq_HkgMVtZCn6CG.jpeg.jpg"
-                 alt="페퍼로니버튼 에리카점 페퍼로니 피자 이미지">
+                 alt="페퍼로니버튼 에리카점 대표 피자 사진">
             <div class="card-content">
                 <h3>🍕 페퍼로니버튼 에리카점</h3>
                 <p class="category">#양식 #피자 #파스타</p>
@@ -173,7 +214,7 @@
         <!-- 🍲 f16 두루정 안산한양대점 -->
         <article class="restaurant-card" id="korean">
             <img src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20251019_87%2F1760854201317eiRbh_PNG%2FKakaoTalk_20251018_225037296_09.png"
-                 alt="두루정 파제육 두루치기 이미지">
+                 alt="두루정 안산한양대점 대표 메뉴 사진">
             <div class="card-content">
                 <h3>🍲 두루정 안산한양대점</h3>
                 <p class="category">#한식 #두루치기 #짜글이</p>
@@ -186,7 +227,7 @@
         <!-- 🍛 f17 백소정 안산한양대점 -->
         <article class="restaurant-card" id="korean">
             <img src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20251127_162%2F1764232259875RWGza_JPEG%2F4_%25B0%25A1%25C3%25F7%25B5%25BF.jpg"
-                 alt="백소정 안산한양대점 카레와 돈카츠 이미지">
+                 alt="백소정 안산한양대점 카레와 돈카츠 사진">
             <div class="card-content">
                 <h3>🍛 백소정 안산한양대점</h3>
                 <p class="category">#일식 #카레 #돈카츠</p>
@@ -199,7 +240,7 @@
         <!-- 🍚 f18 핵밥 안산한양대점 -->
         <article class="restaurant-card" id="Japanese">
             <img src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20251201_127%2F1764549933593Aeo04_JPEG%2F3.jpg"
-                 alt="핵밥 안산한양대점 라멘 및 덮밥 이미지">
+                 alt="핵밥 안산한양대점 라멘 및 덮밥 사진">
             <div class="card-content">
                 <h3>🍚 핵밥 안산한양대점</h3>
                 <p class="category">#일식 #라멘 #덮밥</p>
@@ -212,7 +253,7 @@
     </section>
 </main>
 
-<!-- 📌 페이지네이션 (2페이지 현재) -->
+<!-- 📌 페이지네이션 (2페이지가 현재 위치) -->
 <div class="pagination">
     <a href="index.html">1</a>
     <span class="current-page">2</span>
@@ -223,7 +264,7 @@
 </footer>
 
 <script>
-/* 🔥 드래그 스위치 기능 (index와 동일) */
+/* 🔥 이건어때 스위치 */
 const switchBox = document.getElementById("recommend-switch");
 const handle = switchBox.querySelector(".switch-handle");
 let isDragging = false;
@@ -237,7 +278,6 @@ handle.addEventListener("mousedown", (e) => {
 
 document.addEventListener("mousemove", (e) => {
     if (!isDragging) return;
-
     let moveY = e.clientY - startY;
 
     if (moveY > 0 && moveY < 90) {
@@ -253,6 +293,37 @@ document.addEventListener("mouseup", () => {
     isDragging = false;
     switchBox.classList.remove("dragging");
     handle.style.transform = "translateY(0)";
+});
+
+/* 🟢 제휴업체 스위치 */
+const partnerBox = document.getElementById("partner-switch");
+const partnerHandle = partnerBox.querySelector(".switch-handle");
+let partnerDrag = false;
+let partnerStart = 0;
+
+partnerHandle.addEventListener("mousedown", (e) => {
+    partnerDrag = true;
+    partnerStart = e.clientY;
+    partnerBox.classList.add("dragging");
+});
+
+document.addEventListener("mousemove", (e) => {
+    if (!partnerDrag) return;
+    let moveY = e.clientY - partnerStart;
+
+    if (moveY > 0 && moveY < 90) {
+        partnerHandle.style.transform = `translateY(${moveY}px)`;
+    }
+
+    if (moveY >= 90) {
+        window.location.href = "partner-drink.html";  // 술집 제휴 페이지
+    }
+});
+
+document.addEventListener("mouseup", () => {
+    partnerDrag = false;
+    partnerBox.classList.remove("dragging");
+    partnerHandle.style.transform = "translateY(0)";
 });
 </script>
 
