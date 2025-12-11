@@ -493,3 +493,141 @@ footer {
 .today-toggle-thumb span {
   font-size: 1.1rem;  /* 이모지도 살짝 크게 */
 }
+/* 🔥 두 개 스위치를 담는 상자 */
+.top-switches {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 16px;      /* 두 스위치 간격 */
+    z-index: 2000;
+}
+
+/* 공통 박스 스타일 */
+.switch-box {
+    width: 85px;
+    height: 130px;
+    background: #ffffff;
+    border-radius: 45px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 12px;
+    cursor: grab;
+    user-select: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+
+/* 각각 테마 컬러만 다름 */
+#recommend-switch {
+    border: 3px solid #ffca28;
+}
+
+#partner-switch {
+    border: 3px solid #4caf50;
+}
+
+/* 핸들 공통 스타일 */
+.switch-handle {
+    width: 70%;
+    height: 45px;
+    border-radius: 22px;
+    text-align: center;
+    font-size: 15px;
+    line-height: 45px;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+/* 색상 */
+#recommend-switch .switch-handle { background: #ffd54f; color: #333; }
+#recommend-switch.dragging .switch-handle { background: #ffb300; }
+
+#partner-switch .switch-handle { background: #a5d6a7; color: #1b5e20; }
+#partner-switch.dragging .switch-handle { background: #66bb6a; }
+/* 🔥 두 개 스위치를 담는 상자 */
+.top-switches {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 16px;      /* 두 스위치 간격 */
+    z-index: 2000;
+}
+
+/* 공통 박스 스타일 */
+.switch-box {
+    width: 85px;
+    height: 130px;
+    background: #ffffff;
+    border-radius: 45px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 12px;
+    cursor: grab;
+    user-select: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+
+/* 각각 테마 컬러만 다름 */
+#recommend-switch {
+    border: 3px solid #ffca28;
+}
+
+#partner-switch {
+    border: 3px solid #4caf50;
+}
+
+/* 핸들 공통 스타일 */
+.switch-handle {
+    width: 70%;
+    height: 45px;
+    border-radius: 22px;
+    text-align: center;
+    font-size: 15px;
+    line-height: 45px;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+/* 색상 */
+#recommend-switch .switch-handle { background: #ffd54f; color: #333; }
+#recommend-switch.dragging .switch-handle { background: #ffb300; }
+
+#partner-switch .switch-handle { background: #a5d6a7; color: #1b5e20; }
+#partner-switch.dragging .switch-handle { background: #66bb6a; }
+.affiliate-section {
+    padding: 20px;
+}
+
+.affiliate-section h2 {
+    margin-bottom: 20px;
+    font-size: 26px;
+}
+
+.affiliate-card {
+    background: #ffe8dd;
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 18px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.affiliate-card h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.affiliate-card p {
+    font-size: 16px;
+    line-height: 1.4;
+    text-align: center;
+    white-space: pre-line;
+}
+
+.affiliate-card small {
+    font-size: 13px;
+    color: #555;
+}

@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-        /* 🔥 오늘의 추천 메뉴 스위치 공통 스타일 */
+        /* 🔥 오늘의 추천 메뉴 스위치 */
         #recommend-switch {
             position: fixed;
             top: 20px;
@@ -45,15 +45,51 @@
             background: #ffb300;
         }
 
-        /* 페이지네이션 공통 */
+        /* 🟢 제휴 업체 스위치 */
+        #partner-switch {
+            position: fixed;
+            top: 20px;
+            right: 120px;
+            width: 85px;
+            height: 130px;
+            background: #ffffff;
+            border-radius: 45px;
+            border: 3px solid #4ade80;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 12px;
+            cursor: grab;
+            user-select: none;
+            z-index: 2000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+        }
+
+        #partner-switch .switch-handle {
+            width: 70%;
+            height: 45px;
+            background: #86efac;
+            border-radius: 22px;
+            text-align: center;
+            font-size: 15px;
+            color: #333;
+            line-height: 45px;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+
+        #partner-switch.dragging .switch-handle {
+            background: #4ade80;
+        }
+
+        /* 페이지네이션 */
         .pagination {
             margin: 30px auto;
             text-align: center;
             font-size: 20px;
         }
 
-        .pagination a,
-        .pagination span {
+        .pagination a, .pagination span {
             margin: 0 10px;
             text-decoration: none;
             color: #333;
@@ -70,6 +106,11 @@
 <!-- 🔥 오늘의 추천 메뉴 스위치 -->
 <div id="recommend-switch">
     <div class="switch-handle">이건어때▼</div>
+</div>
+
+<!-- 🟢 제휴 업체 스위치 -->
+<div id="partner-switch">
+    <div class="switch-handle">제휴업체▼</div>
 </div>
 
 <header>
@@ -94,8 +135,7 @@
 
         <!-- 🥘 f1 현가네 -->
         <article class="restaurant-card" id="korean">
-            <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20221210040947_photo2_0a887259f5bf.webp"
-                 alt="현가네 병천순대 장터국밥 국밥 이미지">
+            <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20221210040947_photo2_0a887259f5bf.webp">
             <div class="card-content">
                 <h3>🍲 현가네 병천순대 장터국밥</h3>
                 <p class="category">#한식 #가성비</p>
@@ -107,8 +147,7 @@
 
         <!-- 🍚 f2 동양솥밥 -->
         <article class="restaurant-card" id="korean">
-            <img src="https://lh6.googleusercontent.com/proxy/mFlPiDvRx4kH7DTTCfyQNvrqncjlwe34IAaRhH1jVOBiZ-HjBKWi9JqSp_cjTqwoNxq2cd64sIVQuNr8sn7SypUKIRUxAKHgUKkR_YMJNKFdMXFLnmG-OIH34uo3SL6C-BokXB2qtz_j4sI0bnhofE9BlpJB41SNgM7PLjdMN57Vcf6CaM8JzwXrScyApmcZ29FOBSBvCBg_0DmOSqVfsZ38"
-                 alt="동양솥밥 대표 솥밥 이미지">
+            <img src="https://lh6.googleusercontent.com/proxy/mFlPiDvRx4kH7DTTCfyQNvrqncjlwe34IAaRhH1jVOBiZ-HjBKWi9JqSp_cjTqwoNxq2cd64sIVQuNr8sn7SypUKIRUxAKHgUKkR_YMJNKFdMXFLnmG-OIH34uo3SL6C-BokXB2qtz_j4sI0bnhofE9BlpJB41SNgM7PLjdMN57Vcf6CaM8JzwXrScyApmcZ29FOBSBvCBg_0DmOSqVfsZ38">
             <div class="card-content">
                 <h3>🍚 동양솥밥</h3>
                 <p class="category">#한식 #깔끔한한끼</p>
@@ -120,8 +159,7 @@
 
         <!-- 🍝 f3 앤의 식탁 -->
         <article class="restaurant-card" id="western">
-            <img src="https://mblogthumb-phinf.pstatic.net/MjAyMTEyMjJfMjk1/MDAxNjQwMTg0NjY2NDE3.RBbB9fGP8VdR-3ub6sUq7w_mGv4QsBnykQewqmDrBCUg.w3hVOiOs7ztkFA5nVmgUQEMVeOu3PpH6ALiD2JKtIZcg.JPEG.lastlove62/SE-29d1501f-5c13-11ec-80a4-4fb61b0ebe3d.jpg?type=w800"
-                 alt="앤의 식탁 파스타 이미지">
+            <img src="https://mblogthumb-phinf.pstatic.net/MjAyMTEyMjJfMjk1/MDAxNjQwMTg0NjY2NDE3.RBbB9fGP8VdR-3ub6sUq7w_mGv4QsBnykQewqmDrBCUg.w3hVOiOs7ztkFA5nVmgUQEMVeOu3PpH6ALiD2JKtIZcg.JPEG.lastlove62/SE-29d1501f-5c13-11ec-80a4-4fb61b0ebe3d.jpg?type=w800">
             <div class="card-content">
                 <h3>🍝 앤의 식탁</h3>
                 <p class="category">#양식 #데이트</p>
@@ -133,8 +171,7 @@
 
         <!-- 🍣 f4 에비수 -->
         <article class="restaurant-card" id="Japanese">
-            <img src="https://mblogthumb-phinf.pstatic.net/MjAyNDA0MjJfMjQ0/MDAxNzEzNzIxNTgxNjEz.UAdXxBSxarLv-78M--yvLdoDLmzFiD0lXYhVWHyhrGkg.UyjtwQJrQCalFWKN1fyTzaef95FetDnsBUiAZew4OmQg.JPEG/IMG_6585.jpg?type=w800"
-                 alt="에비수 초밥과 연어롤 이미지">
+            <img src="https://mblogthumb-phinf.pstatic.net/MjAyNDA0MjJfMjQ0/MDAxNzEzNzIxNTgxNjEz.UAdXxBSxarLv-78M--yvLdoDLmzFiD0lXYhVWHyhrGkg.UyjtwQJrQCalFWKN1fyTzaef95FetDnsBUiAZew4OmQg.JPEG/IMG_6585.jpg?type=w800">
             <div class="card-content">
                 <h3>🍣 에비수</h3>
                 <p class="category">#일식 #연어롤맛집</p>
@@ -146,7 +183,7 @@
 
         <!-- 🍗 f5 9292양꼬치 -->
         <article class="restaurant-card" id="Chinese">
-            <img src="f5.jpg" alt="9292양꼬치 숯불 양꼬치 이미지">
+            <img src="f5.jpg">
             <div class="card-content">
                 <h3>🍗 9292양꼬치</h3>
                 <p class="category">#중식 #양꼬치</p>
@@ -158,8 +195,7 @@
 
         <!-- 🍲 f6 도야짬뽕 -->
         <article class="restaurant-card" id="Chinese">
-            <img src="https://cdn.imweb.me/upload/S20210319b1bb7a43ae18f/bb3cda1f3954b.png"
-                 alt="도야짬뽕 국물 짬뽕 이미지">
+            <img src="https://cdn.imweb.me/upload/S20210319b1bb7a43ae18f/bb3cda1f3954b.png">
             <div class="card-content">
                 <h3>🍲 도야짬뽕</h3>
                 <p class="category">#중식 #짬뽕맛집</p>
@@ -171,8 +207,7 @@
 
         <!-- 🥘 f7 예산닭갈비감자탕 -->
         <article class="restaurant-card" id="korean">
-            <img src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20190128_266%2F1548638283666Vkdac_JPEG%2F1fnaUO55gpx6F4jil5ykzjTO.jpeg.jpg"
-                 alt="예산닭갈비감자탕 닭갈비와 감자탕 이미지">
+            <img src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20190128_266%2F1548638283666Vkdac_JPEG%2F1fnaUO55gpx6F4jil5ykzjTO.jpeg.jpg">
             <div class="card-content">
                 <h3>🥘 예산닭갈비감자탕</h3>
                 <p class="category">#한식 #감자탕</p>
@@ -184,8 +219,7 @@
 
         <!-- 🍜 f8 원조청학칡냉면 -->
         <article class="restaurant-card" id="korean">
-            <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNTA2MDRfNzcg%2FMDAxNzQ4OTk1MzUxOTEx.zxJvNqSuKsVkVNYKQ9DGliGKXy4zLVKNb3hGJsmNOJAg.TLgyom95Zvj1BgZHL1KBePGkOMrTY6R47xDipZpkCaIg.JPEG%2F20250603_173943.jpg"
-                 alt="원조청학칡냉면 칡냉면 이미지">
+            <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNTA2MDRfNzcg%2FMDAxNzQ4OTk1MzUxOTEx.zxJvNqSuKsVkVNYKQ9DGliGKXy4zLVKNb3hGJsmNOJAg.TLgyom95Zvj1BgZHL1KBePGkOMrTY6R47xDipZpkCaIg.JPEG%2F20250603_173943.jpg">
             <div class="card-content">
                 <h3>🍜 원조청학칡냉면</h3>
                 <p class="category">#한식 #냉면</p>
@@ -197,13 +231,12 @@
 
         <!-- 🍜 f9 보배반점 -->
         <article class="restaurant-card" id="Chinese">
-            <img src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20251020_286%2F17609224192950oUg4_JPEG%2FIMG_1252_1.jpg"
-                 alt="보배반점 고기짬뽕 이미지">
+            <img src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20251020_286%2F17609224192950oUg4_JPEG%2FIMG_1252_1.jpg">
             <div class="card-content">
                 <h3>🍜 보배반점 안산한양대점</h3>
                 <p class="category">#중식 #짬뽕</p>
                 <p class="rating">⭐️ 4.6</p>
-                <p class="summary">고기 듬뽁 들어간 짬뽕이 유명한 중식당</p>
+                <p class="summary">고기 듬뿍 들어간 짬뽕이 유명한 중식당</p>
                 <a href="inform-f9.html" class="view-detail">자세히 보기</a>
             </div>
         </article>
@@ -222,7 +255,7 @@
 </footer>
 
 <script>
-/* 🔥 드래그 스위치 기능 (공통) */
+/* 🔥 이건어때 스위치 */
 const switchBox = document.getElementById("recommend-switch");
 const handle = switchBox.querySelector(".switch-handle");
 let isDragging = false;
@@ -251,6 +284,37 @@ document.addEventListener("mouseup", () => {
     isDragging = false;
     switchBox.classList.remove("dragging");
     handle.style.transform = "translateY(0)";
+});
+
+/* 🟢 제휴업체 스위치 */
+const partnerBox = document.getElementById("partner-switch");
+const partnerHandle = partnerBox.querySelector(".switch-handle");
+let partnerDrag = false;
+let partnerStart = 0;
+
+partnerHandle.addEventListener("mousedown", (e) => {
+    partnerDrag = true;
+    partnerStart = e.clientY;
+    partnerBox.classList.add("dragging");
+});
+
+document.addEventListener("mousemove", (e) => {
+    if (!partnerDrag) return;
+    let moveY = e.clientY - partnerStart;
+
+    if (moveY > 0 && moveY < 90) {
+        partnerHandle.style.transform = `translateY(${moveY}px)`;
+    }
+
+    if (moveY >= 90) {
+        window.location.href = "partner-drink.html";
+    }
+});
+
+document.addEventListener("mouseup", () => {
+    partnerDrag = false;
+    partnerBox.classList.remove("dragging");
+    partnerHandle.style.transform = "translateY(0)";
 });
 </script>
 
