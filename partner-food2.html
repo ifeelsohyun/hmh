@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>첨단융합대학 제휴소개 - 밥집 2</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* 헤더 오렌지 테마 */
+        header.partner-header {
+            background-color: #f97316;
+        }
+
+        header.partner-header .header-container h1 {
+            color: #ffffff;
+        }
+
+        header.partner-header nav a {
+            color: #fffbeb;
+        }
+
+        header.partner-header nav a:hover {
+            color: #ffffff;
+        }
+
+        /* 현재 메뉴 강조 */
+        .partner-nav-active {
+            font-weight: 700;
+            border-bottom: 2px solid #ffffff;
+        }
+
+        /* ==========================
+           🔶 제휴업체 카드 확장 스타일
+        =========================== */
+        .restaurant-card {
+            min-height: 380px;
+            display: flex;
+            flex-direction: column;
+            border-radius: 12px;
+        }
+
+        .restaurant-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .restaurant-card .card-content {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: flex-start;
+        }
+
+        .restaurant-card h3 {
+            font-size: 20px;
+            margin: 5px 0 6px;
+            line-height: 1.3;
+        }
+
+        .restaurant-card .summary {
+            margin-top: 10px;
+            line-height: 1.4;
+            word-break: keep-all;
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="partner-header">
+    <div class="header-container">
+        <h1>🤝 첨단융합대학 제휴소개</h1>
+
+        <nav>
+            <ul>
+                <li><a href="partner-drink.html">술집</a></li>
+                <li><a href="partner-food1.html">밥집 1</a></li>
+                <li><a href="partner-food2.html" class="partner-nav-active">밥집 2</a></li>
+                <li><a href="partner-cafe.html">카페</a></li>
+                <li><a href="index.html">← 메인맛집지도</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <section class="restaurant-list">
+
+        <!-- 🔶 남월 -->
+        <article class="restaurant-card">
+            <img src="img/partner-namwol.jpg" alt="남월">
+            <div class="card-content">
+                <h3>🥢 남월</h3>
+                <p class="category">#월남쌈 #아시안</p>
+                <p class="summary">
+                    3인당 방문 시 또는 월남쌈 주문 시<br>
+                    음료수 1개 서비스
+                </p>
+            </div>
+        </article>
+
+        <!-- 🔶 버텍스 -->
+        <article class="restaurant-card">
+            <img src="img/partner-vertex.jpg" alt="버텍스">
+            <div class="card-content">
+                <h3>🍤 버텍스</h3>
+                <p class="category">#볶음밥 #아시안</p>
+                <p class="summary">
+                    추가 메뉴 1회 한정 무료 제공<br>
+                    (닭고기, 새우, 야채, 볶음밥 추가는 제외)<br>
+                    OR 4인 이상 주문 시 음료 1캔 제공<br>
+                    (포장 시 동일 적용)
+                </p>
+            </div>
+        </article>
+
+        <!-- 🔶 기찬고기 -->
+        <article class="restaurant-card">
+            <img src="img/partner-gichan.jpg" alt="기찬고기">
+            <div class="card-content">
+                <h3>🥩 기찬고기</h3>
+                <p class="category">#고기집 #한식</p>
+                <p class="summary">
+                    고기 3인분 이상 주문 시<br>
+                    냉국수 1개 서비스
+                </p>
+            </div>
+        </article>
+
+        <!-- 🔶 이서식당 -->
+        <article class="restaurant-card">
+            <img src="img/partner-iseo.jpg" alt="이서식당">
+            <div class="card-content">
+                <h3>🍚 이서식당</h3>
+                <p class="category">#한식 #밥집</p>
+                <p class="summary">
+                    2인 이상 방문 시 음료수 1개 제공<br>
+                    4인 이상 방문 시 음료수 2캔 또는 주류 1병 제공
+                </p>
+            </div>
+        </article>
+
+        <!-- 🔶 언니네화덕핏짜 -->
+        <article class="restaurant-card">
+            <img src="img/partner-eonnipizza.jpg" alt="언니네화덕핏짜">
+            <div class="card-content">
+                <h3>🍕 언니네화덕핏짜</h3>
+                <p class="category">#피자 #양식</p>
+                <p class="summary">
+                    3인당 음료수 1개 서비스<br>
+                    현금 또는 계좌 이체 시 메뉴 1개당 1,000원 할인<br>
+                </p>
+            </div>
+        </article>
+
+        <!-- 🔶 페페로니버튼 -->
+        <article class="restaurant-card">
+            <img src="img/partner-pepperoni-button.jpg" alt="페페로니버튼">
+            <div class="card-content">
+                <h3>🍕 페페로니버튼</h3>
+                <p class="category">#피자 #에리카맛집</p>
+                <p class="summary">
+                    첨융대 학생증 지참 시 피자 사이즈 상관 없이<br>
+                    캔 음료 1캔 또는 Plain fries 서비스<br>
+                </p>
+            </div>
+        </article>
+
+        <!-- 🔶 앤의 식탁 -->
+        <article class="restaurant-card">
+            <img src="img/partner-ann-table.jpg" alt="앤의 식탁">
+            <div class="card-content">
+                <h3>🍝 앤의 식탁</h3>
+                <p class="category">#파스타 #양식</p>
+                <p class="summary">
+                    2인 이상 테이블 이용 시<br>
+                    음료수 1개 서비스
+                </p>
+            </div>
+        </article>
+
+        <!-- 🔶 양식당 -->
+        <article class="restaurant-card">
+            <img src="img/partner-yangrestaurant.jpg" alt="양식당">
+            <div class="card-content">
+                <h3>🍽️ 양식당</h3>
+                <p class="category">#양식 #레스토랑</p>
+                <p class="summary">
+                    2인 이상 방문 시<br>
+                    빅갈릭바게트 또는 뚱캔 음료 1개 선택 제공
+                </p>
+            </div>
+        </article>
+
+        <!-- 🔶 두루정 -->
+        <article class="restaurant-card">
+            <img src="img/partner-durujeong.jpg" alt="두루정">
+            <div class="card-content">
+                <h3>🍲 두루정</h3>
+                <p class="category">#찌개 #한식</p>
+                <p class="summary">
+                    첨단융합대학 학생 3인 이상 주문 시<br>
+                    화산 계란찜 1개 서비스
+                </p>
+            </div>
+        </article>
+
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 첨단융합대학 제휴소개. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

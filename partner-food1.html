@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>첨단융합대학 제휴소개 - 밥집 1</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* 헤더 오렌지 테마 */
+        header.partner-header {
+            background-color: #f97316;
+        }
+
+        header.partner-header .header-container h1 {
+            color: #ffffff;
+        }
+
+        header.partner-header nav a {
+            color: #fffbeb;
+        }
+
+        header.partner-header nav a:hover {
+            color: #ffffff;
+        }
+
+        /* 현재 메뉴 강조 */
+        .partner-nav-active {
+            font-weight: 700;
+            border-bottom: 2px solid #ffffff;
+        }
+
+        /* ==========================
+           🔶 제휴업체 카드 확장 스타일
+        =========================== */
+        .restaurant-card {
+            min-height: 380px;
+            display: flex;
+            flex-direction: column;
+            border-radius: 12px;
+        }
+
+        .restaurant-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .restaurant-card .card-content {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: flex-start;
+        }
+
+        .restaurant-card h3 {
+            font-size: 20px;
+            margin: 5px 0 6px;
+            line-height: 1.3;
+        }
+
+        .restaurant-card .summary {
+            margin-top: 10px;
+            line-height: 1.4;
+            word-break: keep-all;
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="partner-header">
+    <div class="header-container">
+        <h1>🤝 첨단융합대학 제휴소개</h1>
+
+        <nav>
+            <ul>
+                <li><a href="partner-drink.html">술집</a></li>
+                <li><a href="partner-food1.html" class="partner-nav-active">밥집 1</a></li>
+                <li><a href="partner-food2.html">밥집 2</a></li>
+                <li><a href="partner-cafe.html">카페</a></li>
+                <li><a href="index.html">← 메인맛집지도</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <section class="restaurant-list">
+
+        <!-- 🔶 홍성중화요리 -->
+        <article class="restaurant-card">
+            <img src="img/partner-hongseong-chinese.jpg" alt="홍성중화요리">
+            <div class="card-content">
+                <h3>🥟 홍성중화요리</h3>
+                <p class="category">#중식 #밥집</p>
+                <p class="summary">
+                    한 테이블 기준 3인 이상 방문 시 음료수 1개 서비스<br>
+                    
+                </p>
+            </div>
+        </article>
+
+        <!-- 🔶 홍성마라미방 -->
+        <article class="restaurant-card">
+            <img src="img/partner-hongseong-mara.jpg" alt="홍성마라미방">
+            <div class="card-content">
+                <h3>🌶️ 홍성마라미방</h3>
+                <p class="category">#중식 #마라탕</p>
+                <p class="summary">
+                    한 테이블 기준 3인 이상 방문 시 음료수 1개 서비스<br>
+                   
+                </p>
+            </div>
+        </article>
+
+        <!-- 🔶 유가네 닭갈비 -->
+        <article class="restaurant-card">
+            <img src="img/partner-yugane.jpg" alt="유가네 닭갈비">
+            <div class="card-content">
+                <h3>🍗 유가네 닭갈비</h3>
+                <p class="category">#한식 #닭갈비</p>
+                <p class="summary">
+                    2인 이상 방문 시 음료 1캔 서비스<br>
+                    또는 단품(고기) 메뉴 주문 시 음료 1캔 서비스
+                </p>
+            </div>
+        </article>
+
+        <!-- 🔶 참새방앗간 -->
+        <article class="restaurant-card">
+            <img src="img/partner-chamsae.jpg" alt="참새방앗간">
+            <div class="card-content">
+                <h3>🍲 참새방앗간</h3>
+                <p class="category">#한식 #분식</p>
+                <p class="summary">
+                    3인 이상 방문 시 음료수 또는 사리 1인분 제공
+                </p>
+            </div>
+        </article>
+
+        <!-- 🔶 정직유부 -->
+        <article class="restaurant-card">
+            <img src="img/partner-jeongjikyubu.jpg" alt="정직유부">
+            <div class="card-content">
+                <h3>🍱 정직유부</h3>
+                <p class="category">#유부초밥 #간편식</p>
+                <p class="summary">
+                    1인분 구매 시 팩 음료 제공
+                </p>
+            </div>
+        </article>
+
+        <!-- 🔶 이삭토스트 -->
+        <article class="restaurant-card">
+            <img src="img/partner-isactoast.jpg" alt="이삭토스트">
+            <div class="card-content">
+                <h3>🥪 이삭토스트</h3>
+                <p class="category">#토스트 #간식</p>
+                <p class="summary">
+                    토스트 & 음료 구매 시 1,000원 할인
+                </p>
+            </div>
+        </article>
+
+        <!-- 🔶 한그릇 -->
+        <article class="restaurant-card">
+            <img src="img/partner-hangreut.jpg" alt="한그릇">
+            <div class="card-content">
+                <h3>🍚 한그릇</h3>
+                <p class="category">#한식 #정식</p>
+                <p class="summary">
+                    현금 결제 또는 계좌 이체 시 500원 할인
+                </p>
+            </div>
+        </article>
+
+        <!-- 🔶 동양솥밥 -->
+        <article class="restaurant-card">
+            <img src="img/partner-dongyang.jpg" alt="동양솥밥">
+            <div class="card-content">
+                <h3>🍲 동양솥밥</h3>
+                <p class="category">#솥밥 #한식</p>
+                <p class="summary">
+                    4인 이상 방문 시 계절에 맞는 사이드 메뉴 제공<br>
+                    <br>
+                
+                </p>
+            </div>
+        </article>
+
+        <!-- 🔶 밀숲 -->
+        <article class="restaurant-card">
+            <img src="img/partner-milsup.jpg" alt="밀숲">
+            <div class="card-content">
+                <h3>🍜 밀숲</h3>
+                <p class="category">#면요리 #분식</p>
+                <p class="summary">
+                    3인 이상 주문 시 음료 1캔 제공<br>
+                    또는 만두 1,000원 할인
+                </p>
+            </div>
+        </article>
+
+        <!-- 🔶 육앤샤 -->
+        <article class="restaurant-card">
+            <img src="img/partner-yuknsha.jpg" alt="육앤샤">
+            <div class="card-content">
+                <h3>🥩 육앤샤</h3>
+                <p class="category">#육회 #샤브샤브</p>
+                <p class="summary">
+                    오후 6시 이후 방문 시<br>
+                    4인 이상 테이블 → 육회 비빔밥 또는 샤브샤브 1인분 제공<br>
+                    OR 오후 6시 이후 방문 시 소주 3,000원
+                </p>
+            </div>
+        </article>
+
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 첨단융합대학 제휴소개. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
