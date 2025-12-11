@@ -6,19 +6,85 @@
     <title>페퍼로니버튼 | 우리 학교 앞 맛집 지도</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* 🔥 오늘의 추천 메뉴 스위치 공통 스타일 */
+        #recommend-switch {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 85px;
+            height: 130px;
+            background: #ffffff;
+            border-radius: 45px;
+            border: 3px solid #ffca28;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 12px;
+            cursor: grab;
+            user-select: none;
+            z-index: 2000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+        }
+
+        #recommend-switch .switch-handle {
+            width: 70%;
+            height: 45px;
+            background: #ffd54f;
+            border-radius: 22px;
+            text-align: center;
+            font-size: 15px;
+            color: #333;
+            line-height: 45px;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+
+        #recommend-switch.dragging .switch-handle {
+            background: #ffb300;
+        }
+
+        /* 페이지네이션 공통 */
+        .pagination {
+            margin: 30px auto;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .pagination a,
+        .pagination span {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .current-page {
+            color: #ff9800;
+        }
+    </style>
 </head>
 <body>
+
+<!-- 🔥 오늘의 추천 메뉴 스위치 -->
+<div id="recommend-switch">
+    <div class="switch-handle">이건어때▼</div>
+</div>
+
+    </head>
+    <body>
 
 <header>
     <div class="header-container">
         <h1>🍔 우리 학교 앞 맛집 지도</h1>
         <nav>
             <ul>
-                <li><a href="index.html#korean">한식</a></li>
-                <li><a href="index.html#western">양식</a></li>
-                <li><a href="index.html#Japanese">일식</a></li>
-                <li><a href="index.html#Chinese">중식</a></li>
-                <li><a href="index.html#best">🌟 베스트</a></li>
+                <li><a href="index.html">전체</a></li>
+                <li><a href="index-korean.html">한식</a></li>
+                <li><a href="index-western.html">양식</a></li>
+                <li><a href="index-japanese.html">일식</a></li>
+                <li><a href="index-chinese.html">중식</a></li>
             </ul>
         </nav>
     </div>
@@ -219,6 +285,39 @@
 <a href="map-f15.html" class="floating-nav">
     📍 페퍼로니버튼까지 길찾기
 </a>
+
+<script>
+    /* 🔥 드래그 스위치 기능 (공통) */
+const switchBox = document.getElementById("recommend-switch");
+const handle = switchBox.querySelector(".switch-handle");
+let isDragging = false;
+let startY = 0;
+
+handle.addEventListener("mousedown", (e) => {
+    isDragging = true;
+    startY = e.clientY;
+    switchBox.classList.add("dragging");
+});
+
+document.addEventListener("mousemove", (e) => {
+    if (!isDragging) return;
+    let moveY = e.clientY - startY;
+
+    if (moveY > 0 && moveY < 90) {
+        handle.style.transform = `translateY(${moveY}px)`;
+    }
+
+    if (moveY >= 90) {
+        window.location.href = "recommend.html";
+    }
+});
+
+document.addEventListener("mouseup", () => {
+    isDragging = false;
+    switchBox.classList.remove("dragging");
+    handle.style.transform = "translateY(0)";
+});
+</script>
 
 </body>
 </html>
