@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>두루정 안산한양대점 길찾기</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- 기존 사이트 스타일 -->
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Leaflet -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  ></script>
+
+  <!-- 지도 스타일 -->
+  <style>
+    body {
+      margin: 0;
+      font-family: "Noto Sans KR", sans-serif;
+      background: #0f172a;
+      color: #111827;
+    }
+
+    header {
+      background: #0f172a;
+      color: #f9fafb;
+      padding: 10px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.4);
+    }
+
+    header h1 {
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    header a {
+      color: #93c5fd;
+      font-size: 0.85rem;
+      text-decoration: none;
+    }
+
+    .map-fullpage {
+      height: calc(100vh - 50px);
+    }
+
+    #leafletMap {
+      width: 100%;
+      height: 100%;
+    }
+
+    .map-top-banner {
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.86);
+      color: #e5e7eb;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      z-index: 1000;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.8);
+      pointer-events: none;
+    }
+
+    .map-floating-actions {
+      position: absolute;
+      right: 16px;
+      bottom: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 1000;
+    }
+
+    .map-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.55);
+    }
+
+    .map-btn-primary {
+      background: #2563eb;
+      color: white;
+    }
+
+    .map-btn-secondary {
+      background: rgba(15, 23, 42, 0.88);
+      color: white;
+    }
+
+    .route-main {
+      stroke: #60a5fa;
+      stroke-width: 5;
+      stroke-linecap: round;
+    }
+
+    .route-shadow {
+      stroke: rgba(15, 23, 42, 0.7);
+      stroke-width: 9;
+      stroke-linecap: round;
+    }
+
+    .user-marker-badge {
+      background: #2563eb;
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+    }
+
+    .store-marker-badge {
+      background: #f97316;
+      color: #111;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🗺 두루정 안산한양대점 길찾기</h1>
+  <a href="inform-f16.html">← 상세 페이지로 돌아가기</a>
+</header>
+
+<div class="map-fullpage">
+  <div id="leafletMap"></div>
+
+  <div class="map-top-banner" id="statusBanner">
+    <span>📡</span>
+    <span id="statusText">현재 위치를 불러오는 중입니다…</span>
+  </div>
+
+  <div class="map-floating-actions">
+    <button id="openMapBtn" class="map-btn map-btn-primary" disabled>
+      🗺 구글 지도에서 길찾기 열기
+    </button>
+  </div>
+</div>
+
+<script>
+  // 📍 두루정 정보
+  const DEST_LAT = 37.301251;
+  const DEST_LNG = 126.838106;
+  const destName = "두루정 안산한양대점";
+  const destAddress = "경기 안산시 상록구 성안길 78-1 103~104호";
+
+  let map;
+  let userMarker = null;
+  let destMarker = null;
+  let routeLineMain = null;
+  let routeLineShadow = null;
+
+  let currentLat = null;
+  let currentLng = null;
+
+  const statusText = document.getElementById("statusText");
+  const openMapBtn = document.getElementById("openMapBtn");
+
+  // 지도 초기화
+  function initMap() {
+    map = L.map("leafletMap").setView([DEST_LAT, DEST_LNG], 17);
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19
+    }).addTo(map);
+
+    destMarker = L.marker([DEST_LAT, DEST_LNG], {
+      icon: L.divIcon({
+        className: "",
+        html: '<div class="store-marker-badge">🍲 두루정</div>',
+        iconSize: [40, 40],
+        iconAnchor: [20, 20]
+      })
+    }).addTo(map);
+
+    destMarker.bindPopup(destName + "<br>" + destAddress);
+  }
+
+  // OSRM 경로 API
+  async function drawRoute(startLat, startLng) {
+    const url =
+      `https://router.project-osrm.org/route/v1/foot/${startLng},${startLat};${DEST_LNG},${DEST_LAT}?overview=full&geometries=geojson`;
+
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+
+      const coords = data.routes[0].geometry.coordinates;
+      const latLngs = coords.map(c => [c[1], c[0]]);
+
+      if (routeLineMain) routeLineMain.remove();
+      if (routeLineShadow) routeLineShadow.remove();
+
+      routeLineShadow = L.polyline(latLngs, { className: "route-shadow" }).addTo(map);
+      routeLineMain = L.polyline(latLngs, { className: "route-main" }).addTo(map);
+
+      map.fitBounds(routeLineMain.getBounds(), { padding: [40, 40] });
+
+      statusText.textContent = "경로 표시 완료!";
+    } catch (err) {
+      statusText.textContent = "경로를 불러오지 못했습니다.";
+    }
+  }
+
+  // 내 위치 가져오기
+  function requestLocation() {
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        currentLat = pos.coords.latitude;
+        currentLng = pos.coords.longitude;
+
+        if (userMarker) userMarker.remove();
+        userMarker = L.marker([currentLat, currentLng], {
+          icon: L.divIcon({
+            html: '<div class="user-marker-badge">출발</div>',
+            iconSize: [40, 40],
+            iconAnchor: [20, 20]
+          })
+        }).addTo(map);
+
+        statusText.textContent = "경로 계산 중…";
+
+        drawRoute(currentLat, currentLng);
+
+        openMapBtn.disabled = false;
+      },
+      () => {
+        statusText.textContent = "위치 정보를 가져올 수 없습니다.";
+      }
+    );
+  }
+
+  // 구글 지도 열기
+  openMapBtn.addEventListener("click", () => {
+    if (!currentLat || !currentLng) return;
+
+    const url =
+      `https://www.google.com/maps/dir/?api=1&origin=${currentLat},${currentLng}` +
+      `&destination=${encodeURIComponent(destAddress)}&travelmode=walking`;
+
+    window.open(url, "_blank");
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    initMap();
+    requestLocation();
+  });
+</script>
+
+</body>
+</html>
