@@ -6,14 +6,76 @@
     <title>🏫 우리 학교 앞 맛집 지도 - 2페이지</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* 🔥 추천 메뉴 스위치 */
+        #recommend-switch {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 85px;
+            height: 130px;
+            background: #ffffff;
+            border-radius: 45px;
+            border: 3px solid #ffca28;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 12px;
+            cursor: grab;
+            user-select: none;
+            z-index: 2000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+        }
+
+        #recommend-switch .switch-handle {
+            width: 70%;
+            height: 45px;
+            background: #ffd54f;
+            border-radius: 22px;
+            text-align: center;
+            font-size: 15px;
+            color: #333;
+            line-height: 45px;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+
+        #recommend-switch.dragging .switch-handle {
+            background: #ffb300;
+        }
+
+        /* 페이지네이션 */
+        .pagination {
+            margin: 30px auto;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .pagination a, .pagination span {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .current-page {
+            color: #ff9800;
+        }
+    </style>
 </head>
 <body>
+
+<!-- 🔥 오늘의 추천 메뉴 스위치 -->
+<div id="recommend-switch">
+    <div class="switch-handle">이건어때   ▼</div>
+</div>
 
 <header>
     <div class="header-container">
         <h1>🍔 우리 학교 앞 맛집 지도</h1>
 
-        <!-- 🍽️ 네비게이션: 전체 / 한식 / 양식 / 일식 / 중식 -->
+        <!-- 🔥 상단 메뉴 (전체 / 한식 / 양식 / 일식 / 중식) -->
         <nav>
             <ul>
                 <li><a href="index.html">전체</a></li>
@@ -32,12 +94,12 @@
         <!-- 🌶️ f10 탕화쿵푸마라탕 -->
         <article class="restaurant-card" id="Chinese">
             <img src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20250224_94%2F1740385890135SgbOn_PNG%2FKakaoTalk_20241114_091139402.png"
-                 alt="탕화쿵푸마라탕 이미지">
+                 alt="탕화쿵푸마라탕의 다양한 재료가 담긴 마라탕 사진">
             <div class="card-content">
                 <h3>🌶️ 탕화쿵푸마라탕 한양대점</h3>
                 <p class="category">#중식 #마라탕 #마라샹궈</p>
                 <p class="rating">⭐️ 4.5</p>
-                <p class="summary">얼얼한 매운맛이 있는 마라탕 전문점</p>
+                <p class="summary">얼얼하고 중독성 있는 마라탕 전문점</p>
                 <a href="inform-f10.html" class="view-detail">자세히 보기</a>
             </div>
         </article>
@@ -45,17 +107,17 @@
         <!-- 🔥 f11 대홍훠궈샤브샤브 -->
         <article class="restaurant-card" id="Chinese">
             <img src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20251018_282%2F1760773174030DnvlC_JPEG%2F2355.jpg"
-                 alt="대홍훠궈샤브샤브 이미지">
+                 alt="대홍훠궈샤브샤브의 훠궈 사진">
             <div class="card-content">
                 <h3>🔥 대홍훠궈샤브샤브 한양대점</h3>
                 <p class="category">#중식 #훠궈 #샤브샤브</p>
                 <p class="rating">⭐️ 4.7</p>
-                <p class="summary">홍탕·백탕 육수로 즐기는 무한리필 훠궈 맛집</p>
+                <p class="summary">홍탕·백탕 육수로 즐기는 무한리필 훠궈 전문점</p>
                 <a href="inform-f11.html" class="view-detail">자세히 보기</a>
             </div>
         </article>
 
-        <!-- 🍜 f12 코운즈 (일식 라멘) -->
+        <!-- 🍜 f12 코운즈 -->
         <article class="restaurant-card" id="Japanese">
             <img src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20240726_276%2F1721998139257MaCoj_JPEG%2F1721998068459.jpg"
                  alt="코운즈 라멘 이미지">
@@ -63,7 +125,8 @@
                 <h3>🍜 코운즈</h3>
                 <p class="category">#일식 #라멘 #마제소바</p>
                 <p class="rating">⭐️ 4.5</p>
-                <p class="summary">30시간 숙성 자가제면을 사용하는 라멘 전문점</p>
+                <p class="summary">30시간 숙성 자가제면 면을 사용하는 라멘 전문점
+                </p>
                 <a href="inform-f12.html" class="view-detail">자세히 보기</a>
             </div>
         </article>
@@ -146,16 +209,49 @@
     </section>
 </main>
 
-<!-- 📌 페이지네이션 -->
+<!-- 📌 페이지네이션 (2페이지가 현재 위치) -->
 <div class="pagination">
     <a href="index.html">1</a>
     <span class="current-page">2</span>
 </div>
 
 <footer>
-    <p>&copy; 2025 학교 앞 맛집 지도. All Rights Reserved. | 문의: contact@schoolfood.com</p>
+    <p>&copy; 2025 학교 앞 맛집 지도. All Rights Reserved.</p>
 </footer>
+
+<script>
+/* 🔥 드래그 스위치 기능 */
+const switchBox = document.getElementById("recommend-switch");
+const handle = switchBox.querySelector(".switch-handle");
+let isDragging = false;
+let startY = 0;
+
+handle.addEventListener("mousedown", (e) => {
+    isDragging = true;
+    startY = e.clientY;
+    switchBox.classList.add("dragging");
+});
+
+document.addEventListener("mousemove", (e) => {
+    if (!isDragging) return;
+
+    let moveY = e.clientY - startY;
+
+    if (moveY > 0 && moveY < 90) {
+        handle.style.transform = `translateY(${moveY}px)`;
+    }
+
+    if (moveY >= 90) {
+        window.location.href = "recommend.html"; 
+    }
+});
+
+document.addEventListener("mouseup", () => {
+    isDragging = false;
+    switchBox.classList.remove("dragging");
+    handle.style.transform = "translateY(0)";
+});
+</script>
 
 </body>
 </html>
-<!DOCTYPE html>
