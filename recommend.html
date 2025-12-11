@@ -13,6 +13,7 @@
             margin: 0;
             background: #fff8e1; /* 추천 페이지 배경 */
             font-family: 'Noto Sans KR', sans-serif;
+            color: #111;
         }
 
         /* 🔹 index와 같은 header 구조를 쓰되, 색만 초록으로 변경 */
@@ -119,10 +120,201 @@
             font-size: 13px;
             background: #e5e7eb;
         }
+
+        /* 🔥 오늘의 추천 메뉴 스위치 (index와 동일) */
+        #recommend-switch {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 85px;
+            height: 130px;
+            background: #ffffff;
+            border-radius: 45px;
+            border: 3px solid #ffca28;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 12px;
+            cursor: grab;
+            user-select: none;
+            z-index: 2000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+        }
+
+        #recommend-switch .switch-handle {
+            width: 70%;
+            height: 45px;
+            background: #ffd54f;
+            border-radius: 22px;
+            text-align: center;
+            font-size: 15px;
+            color: #333;
+            line-height: 45px;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+
+        #recommend-switch.dragging .switch-handle {
+            background: #ffb300;
+        }
+
+        /* 🟢 제휴 업체 스위치 (index와 동일) */
+        #partner-switch {
+            position: fixed;
+            top: 20px;
+            right: 120px;
+            width: 85px;
+            height: 130px;
+            background: #ffffff;
+            border-radius: 45px;
+            border: 3px solid #4ade80;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 12px;
+            cursor: grab;
+            user-select: none;
+            z-index: 2000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+        }
+
+        #partner-switch .switch-handle {
+            width: 70%;
+            height: 45px;
+            background: #86efac;
+            border-radius: 22px;
+            text-align: center;
+            font-size: 15px;
+            color: #333;
+            line-height: 45px;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+
+        #partner-switch.dragging .switch-handle {
+            background: #4ade80;
+        }
+
+        /* 🌓 다크모드 전등 스위치 (왼쪽 위) */
+        #darkmode-switch {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 85px;
+            height: 130px;
+            background: #ffffff;
+            border-radius: 45px;
+            border: 3px solid #9fa8da;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 12px;
+            cursor: pointer;
+            user-select: none;
+            z-index: 2000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+            transition: transform 0.2s;
+        }
+
+        #darkmode-switch:hover {
+            transform: translateY(1px);
+        }
+
+        #darkmode-switch .switch-handle {
+            width: 70%;
+            height: 45px;
+            border-radius: 22px;
+            background: #c5cae9; /* 연보라 */
+            text-align: center;
+            font-size: 13px;
+            color: #111;
+            line-height: 45px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+            transition: transform 0.22s ease,
+                        background 0.22s ease,
+                        box-shadow 0.22s ease;
+        }
+
+        #darkmode-switch .arrow {
+            font-size: 18px;
+            color: #555;
+            transition: color 0.22s ease, transform 0.22s ease;
+        }
+        #darkmode-switch .arrow::before {
+            content: "";
+        }
+
+        /* 🌙 다크모드 전체 스타일 */
+        body.dark-mode {
+            background-color: #111111;
+            color: #f5f5f5;
+        }
+
+        body.dark-mode header {
+            background-color: #14532d; /* 조금 더 어두운 초록 */
+        }
+
+        body.dark-mode .recommend-box {
+            background: #1f2933;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.6);
+        }
+
+        body.dark-mode .recommend-title {
+            color: #fdba74;
+        }
+
+        body.dark-mode .recommend-category {
+            color: #e5e7eb;
+        }
+
+        body.dark-mode .btn-again {
+            background: #374151;
+            color: #f9fafb;
+        }
+
+        body.dark-mode footer {
+            background: #111827;
+            color: #9ca3af;
+        }
+
+        /* 다크모드일 때 전등 버튼 애니메이션 + 강조 */
+        body.dark-mode #darkmode-switch .switch-handle {
+            background: #ffeb3b;
+            transform: translateY(32px); /* 아래로 내려가는 느낌 */
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.4);
+        }
+
+        body.dark-mode #darkmode-switch .arrow {
+            color: #fff;
+            transform: translateY(-4px);
+        }
+
+        body.dark-mode #darkmode-switch .arrow::before {
+            content: ""; /* 위쪽 화살표로 변경 */
+        }
     </style>
 </head>
 
 <body>
+
+<!-- 🌓 다크모드 전등 스위치 -->
+<div id="darkmode-switch">
+    <div class="switch-handle">다크모드</div>
+    <div class="arrow"></div>
+</div>
+
+<!-- 🔥 오늘의 추천 메뉴 스위치 -->
+<div id="recommend-switch">
+    <div class="switch-handle">이건어때▼</div>
+</div>
+
+<!-- 🟢 제휴 업체 스위치 -->
+<div id="partner-switch">
+    <div class="switch-handle">제휴업체▼</div>
+</div>
 
 <!-- 🔹 index.html과 같은 헤더 구조 -->
 <header>
@@ -275,6 +467,6 @@ function pickRandom() {
 
 pickRandom();  // 페이지 켜지면 바로 1개 추천
 </script>
-
+<script src="darkmode.js"></script>
 </body>
 </html>

@@ -82,6 +82,59 @@
             background: #4ade80;
         }
 
+        /* 🌓 다크모드 전등 스위치 (왼쪽 위, 화면에 떠 있는 버튼) */
+        #darkmode-switch {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 85px;
+            height: 130px;
+            background: #ffffff;
+            border-radius: 45px;
+            border: 3px solid #9fa8da;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 12px;
+            cursor: pointer;
+            user-select: none;
+            z-index: 2000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+            transition: transform 0.2s;
+        }
+
+        #darkmode-switch:hover {
+            transform: translateY(1px);
+        }
+
+        /* 스위치 안의 ‘다크모드’ 노브 */
+        #darkmode-switch .switch-handle {
+            width: 70%;
+            height: 45px;
+            border-radius: 22px;
+            background: #c5cae9; /* 연보라 느낌 */
+            text-align: center;
+            font-size: 13px;
+            color: #111;
+            line-height: 45px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+            transition: transform 0.22s ease,
+                        background 0.22s ease,
+                        box-shadow 0.22s ease;
+        }
+
+        #darkmode-switch .arrow {
+            font-size: 18px;
+            color: #555;
+            transition: color 0.22s ease, transform 0.22s ease;
+        }
+        #darkmode-switch .arrow::before {
+            content: "";
+        }
+
         /* 페이지네이션 */
         .pagination {
             margin: 30px auto;
@@ -99,9 +152,76 @@
         .current-page {
             color: #ff9800;
         }
+
+        /* 🌙 다크모드 전체 스타일 (공통 테마) */
+        body.dark-mode {
+            background-color: #111111;
+            color: #f5f5f5;
+        }
+
+        body.dark-mode header {
+            background-color: #181818;
+            border-bottom: 1px solid #333;
+        }
+
+        body.dark-mode h1 {
+            color: #ffffff;
+        }
+
+        body.dark-mode nav ul li a {
+            color: #f5f5f5;
+        }
+
+        body.dark-mode .restaurant-card {
+            background-color: #1c1c1c;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+        }
+
+        body.dark-mode .restaurant-card .category,
+        body.dark-mode .restaurant-card .rating,
+        body.dark-mode .restaurant-card .summary {
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .view-detail {
+            background-color: #ffb300;
+            color: #111111;
+        }
+
+        body.dark-mode footer {
+            background-color: #181818;
+            color: #bdbdbd;
+        }
+
+        body.dark-mode .pagination a,
+        body.dark-mode .pagination span {
+            color: #f5f5f5;
+        }
+
+        /* 다크모드일 때 전등 버튼 강조 + 스위치 내려감 */
+        body.dark-mode #darkmode-switch .switch-handle {
+            background: #ffeb3b;
+            transform: translateY(32px); /* 아래쪽으로 내려가게 */
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.4);
+        }
+
+        body.dark-mode #darkmode-switch .arrow {
+            color: #fff;
+            transform: translateY(-4px);
+        }
+
+        body.dark-mode #darkmode-switch .arrow::before {
+            content: ""; /* 위쪽 화살표 */
+        }
     </style>
 </head>
 <body>
+
+<!-- 🌓 다크모드 전등 스위치 -->
+<div id="darkmode-switch">
+    <div class="switch-handle">다크모드</div>
+    <div class="arrow"></div>
+</div>
 
 <!-- 🔥 오늘의 추천 메뉴 스위치 -->
 <div id="recommend-switch">
@@ -146,7 +266,7 @@
             </div>
         </article>
 
-        <!-- 🔥 f11 대홍훠궈샤브샤브 (메인 브랜치 이미지 사용) -->
+        <!-- 🔥 f11 대홍훠궈샤브샤브 -->
         <article class="restaurant-card" id="Chinese">
             <img src="https://i.namu.wiki/i/mqZingBQr80WuH3zHWSw4sKke1Ks7CR-eEZ75cDxXHcaj6vM9GXowAlhhnwx8_6xOFkQ4kF2EJB1BfCieMbBaA.webp"
                  alt="대홍훠궈샤브샤브 훠궈 냄비 이미지">
@@ -325,6 +445,27 @@ document.addEventListener("mouseup", () => {
     partnerBox.classList.remove("dragging");
     partnerHandle.style.transform = "translateY(0)";
 });
+
+/* 🌓 다크모드 전등 스위치 – 클릭만 (드래그 없음) */
+(function() {
+    // 저장된 다크모드 상태 적용
+    const saved = localStorage.getItem("darkMode");
+    if (saved === "on") {
+        document.body.classList.add("dark-mode");
+    }
+
+    const darkSwitch = document.getElementById("darkmode-switch");
+    if (!darkSwitch) return;
+
+    darkSwitch.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+        if (document.body.classList.contains("dark-mode")) {
+            localStorage.setItem("darkMode", "on");
+        } else {
+            localStorage.setItem("darkMode", "off");
+        }
+    });
+})();
 </script>
 
 </body>

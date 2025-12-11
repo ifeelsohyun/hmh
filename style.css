@@ -1,14 +1,18 @@
-/* 기본 스타일 초기화 */
+/* =========================
+   기본 스타일 초기화
+   ========================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* 폰트 및 배경 설정 (무난함 & 깔끔함) */
+/* =========================
+   기본 폰트 / 배경
+   ========================= */
 body {
-    font-family: 'Noto Sans KR', sans-serif; /* 고딕 계열 폰트 */
-    background-color: #f4f4f7; /* 아주 연한 회색 배경 */
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #f4f4f7;
     color: #333;
     line-height: 1.6;
 }
@@ -19,9 +23,11 @@ body {
     padding: 20px;
 }
 
-/* 헤더 (상단 메뉴) */
+/* =========================
+   헤더 / 내비게이션
+   ========================= */
 header {
-    background-color: #1e88e5; /* 학교 상징색으로 자주 사용되는 파란색 */
+    background-color: #1e88e5;
     color: white;
     padding: 15px 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -41,7 +47,6 @@ header h1 {
     font-weight: 700;
 }
 
-/* 내비게이션 (직관성) */
 nav ul {
     list-style: none;
     display: flex;
@@ -57,18 +62,19 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.2); /* 호버 시 부드러운 배경 변화 */
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* 맛집 목록 레이아웃 (이용 편의성 & 카드형) */
+/* =========================
+   메인 맛집 카드 리스트
+   ========================= */
 .restaurant-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 반응형 그리드 */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 25px;
     padding-top: 30px;
 }
 
-/* 맛집 카드 디자인 (깔끔함 & 정보 강조) */
 .restaurant-card {
     background-color: white;
     border-radius: 10px;
@@ -78,8 +84,8 @@ nav ul li a:hover {
 }
 
 .restaurant-card:hover {
-    transform: translateY(-5px); /* 호버 시 약간 뜸 */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* 그림자 진해짐 */
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .restaurant-card img {
@@ -95,7 +101,7 @@ nav ul li a:hover {
 .card-content h3 {
     font-size: 1.5em;
     margin-bottom: 5px;
-    color: #1e88e5; /* 포인트 색상 */
+    color: #1e88e5;
 }
 
 .category {
@@ -107,14 +113,14 @@ nav ul li a:hover {
 .rating {
     font-size: 1.1em;
     font-weight: 700;
-    color: #ffc107; /* 별점 색상 */
+    color: #ffc107;
     margin-bottom: 10px;
 }
 
 .summary {
     margin-bottom: 15px;
     font-size: 1em;
-    height: 45px; /* 줄 수 제한을 위한 높이 설정 */
+    height: 45px;
     overflow: hidden;
 }
 
@@ -132,26 +138,54 @@ nav ul li a:hover {
     background-color: #1565c0;
 }
 
-/* 푸터 (하단 정보) */
+/* =========================
+   푸터
+   ========================= */
 footer {
     text-align: center;
     padding: 20px;
-    background-color: #e9ecef; /* 헤더보다 연한 배경 */
+    background-color: #e9ecef;
     color: #6c757d;
     margin-top: 40px;
     font-size: 0.9em;
 }
 
-/* --- 모바일 반응형 디자인 (@media) --- */
+/* =========================
+   페이지네이션
+   ========================= */
+.pagination {
+    text-align: center;
+    margin: 30px 0;
+    font-size: 18px;
+}
+
+.pagination a,
+.pagination span {
+    margin: 0 8px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.pagination a {
+    color: #333;
+}
+
+.pagination a.active,
+.current-page {
+    color: #ff5722;
+}
+
+/* =========================
+   모바일 반응형
+   ========================= */
 @media (max-width: 768px) {
-    /* 헤더 세로로 변경 */
     .header-container {
         flex-direction: column;
         text-align: center;
     }
 
     nav ul {
-        flex-wrap: wrap; /* 메뉴가 많을 경우 줄 바꿈 */
+        flex-wrap: wrap;
         justify-content: center;
         margin-top: 10px;
     }
@@ -163,18 +197,17 @@ footer {
     }
 
     .restaurant-list {
-        grid-template-columns: 1fr; /* 모바일에서 카드를 한 줄에 하나씩 */
+        grid-template-columns: 1fr;
     }
 
     .restaurant-card img {
-        height: 150px; /* 모바일에서 이미지 높이 줄이기 */
+        height: 150px;
     }
 }
 
-/* ============================= */
-/*  상세 페이지 (hyeonga.html)  */
-/* ============================= */
-
+/* =========================
+   상세 페이지 (inform-*.html)
+   ========================= */
 .detail-page {
     padding: 40px 0;
     background: linear-gradient(135deg, #fff7f0 0%, #fff 45%, #f5f7ff 100%);
@@ -189,7 +222,6 @@ footer {
     box-shadow: 0 18px 40px rgba(0, 0, 0, 0.06);
 }
 
-/* 상단 영역 (사진 + 기본 정보) */
 .detail-top {
     display: flex;
     gap: 24px;
@@ -342,29 +374,25 @@ footer {
     transform: translateY(-1px);
 }
 
-/* ============================= */
-/*  현가네 길찾기 플로팅 버튼   */
-/* ============================= */
-
+/* =========================
+   현가네 길찾기 플로팅 버튼
+   ========================= */
 .floating-nav {
-    position: fixed;          /* 화면에 고정 */
-    right: 24px;              /* 오른쪽에서 24px */
-    bottom: 24px;             /* 아래에서 24px */
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
     z-index: 1000;
-
     display: inline-flex;
     align-items: center;
     gap: 8px;
-
     padding: 12px 18px;
-    border-radius: 999px;     /* 동그랗게 */
+    border-radius: 999px;
     background: #2563eb;
     color: #ffffff;
     font-size: 0.9rem;
     font-weight: 600;
     text-decoration: none;
     box-shadow: 0 12px 28px rgba(37, 99, 235, 0.55);
-
     transition: transform 0.15s ease, box-shadow 0.15s ease,
                 background-color 0.15s ease;
 }
@@ -380,7 +408,6 @@ footer {
     box-shadow: 0 8px 18px rgba(37, 99, 235, 0.5);
 }
 
-/* 모바일에서 너무 오른쪽 아래로 몰리지 않게 살짝 조정 */
 @media (max-width: 640px) {
     .floating-nav {
         right: 16px;
@@ -390,213 +417,69 @@ footer {
     }
 }
 
-.pagination {
+/* =========================
+   상단 이건어때 / 제휴 스위치
+   ========================= */
+#recommend-switch,
+#partner-switch {
+    position: fixed;
+    top: 20px;
+    width: 85px;
+    height: 130px;
+    background: #ffffff;
+    border-radius: 45px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 12px;
+    cursor: grab;
+    user-select: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    z-index: 2000;
+}
+
+#recommend-switch {
+    right: 20px;
+    border: 3px solid #ffca28;
+}
+
+#partner-switch {
+    right: 120px;
+    border: 3px solid #4ade80;
+}
+
+.switch-handle {
+    width: 70%;
+    height: 45px;
+    border-radius: 22px;
     text-align: center;
-    margin: 30px 0;
-    font-size: 18px;
+    font-size: 15px;
+    line-height: 45px;
+    font-weight: 700;
+    transition: 0.2s;
 }
 
-.pagination a,
-.pagination span {
-    margin: 0 8px;
-}
-
-.pagination a {
-    text-decoration: none;
+#recommend-switch .switch-handle {
+    background: #ffd54f;
     color: #333;
-    font-weight: 600;
 }
 
-.pagination a.active {
-    color: #ff5722;
-}
-/* ============================
-   오늘의 추천 메뉴 토글 스위치
-   ============================ */
-.today-toggle {
-  position: fixed;
-  top: 80px;           /* 헤더보다 살짝 아래 */
-  right: 24px;
-  z-index: 1000;
-  user-select: none;
+#recommend-switch.dragging .switch-handle {
+    background: #ffb300;
 }
 
-.today-toggle-track {
-  position: relative;
-  width: 180px;
-  height: 40px;
-  border-radius: 999px;
-  background: rgba(15, 23, 42, 0.95); /* 어두운 배경 */
-  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.7);
-  padding: 6px 10px;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
+#partner-switch .switch-handle {
+    background: #86efac;
+    color: #333;
 }
 
-.today-toggle-text {
-  font-size: 0.78rem;
-  color: #e5e7eb;
-  margin-left: 6px;
-  white-space: nowrap;
+#partner-switch.dragging .switch-handle {
+    background: #4ade80;
 }
 
-.today-toggle-hint {
-  font-size: 0.7rem;
-  color: #9ca3af;
-  margin-left: auto;
-  margin-right: 40px; /* 손잡이 영역 확보 */
-}
-
-/* 손잡이(전등 버튼) */
-.today-toggle-thumb {
-  position: absolute;
-  top: 4px;
-  left: 130px; /* 기본은 오른쪽에 붙어 있게 */
-  width: 32px;
-  height: 32px;
-  border-radius: 999px;
-  background: #fde68a; /* 노란 전구 느낌 */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 10px 18px rgba(250, 204, 21, 0.7);
-  cursor: grab;
-  transition: left 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
-}
-
-.today-toggle-thumb span {
-  font-size: 1rem;
-}
-
-.today-toggle-thumb.dragging {
-  cursor: grabbing;
-  transition: none; /* 드래그 중엔 애니메이션 제거 */
-  transform: scale(0.96);
-}
-.today-toggle-thumb {
-  position: absolute;
-  top: 2px;          /* 살짝 위로 올려서 트랙 안에 예쁘게 맞추기 */
-  left: 130px;       /* 기본은 오른쪽에 붙어 있게 (JS에서 다시 계산함) */
-  width: 40px;       /* 🔹 크기 키움 (32 → 40) */
-  height: 40px;      /* 🔹 크기 키움 (32 → 40) */
-  border-radius: 999px;
-  background: #fde68a; /* 노란 전구 느낌 */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 10px 18px rgba(250, 204, 21, 0.7);
-  cursor: grab;
-  transition: left 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
-}
-
-.today-toggle-thumb span {
-  font-size: 1.1rem;  /* 이모지도 살짝 크게 */
-}
-/* 🔥 두 개 스위치를 담는 상자 */
-.top-switches {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    display: flex;
-    gap: 16px;      /* 두 스위치 간격 */
-    z-index: 2000;
-}
-
-/* 공통 박스 스타일 */
-.switch-box {
-    width: 85px;
-    height: 130px;
-    background: #ffffff;
-    border-radius: 45px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding-top: 12px;
-    cursor: grab;
-    user-select: none;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-}
-
-/* 각각 테마 컬러만 다름 */
-#recommend-switch {
-    border: 3px solid #ffca28;
-}
-
-#partner-switch {
-    border: 3px solid #4caf50;
-}
-
-/* 핸들 공통 스타일 */
-.switch-handle {
-    width: 70%;
-    height: 45px;
-    border-radius: 22px;
-    text-align: center;
-    font-size: 15px;
-    line-height: 45px;
-    font-weight: 700;
-    transition: 0.2s;
-}
-
-/* 색상 */
-#recommend-switch .switch-handle { background: #ffd54f; color: #333; }
-#recommend-switch.dragging .switch-handle { background: #ffb300; }
-
-#partner-switch .switch-handle { background: #a5d6a7; color: #1b5e20; }
-#partner-switch.dragging .switch-handle { background: #66bb6a; }
-/* 🔥 두 개 스위치를 담는 상자 */
-.top-switches {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    display: flex;
-    gap: 16px;      /* 두 스위치 간격 */
-    z-index: 2000;
-}
-
-/* 공통 박스 스타일 */
-.switch-box {
-    width: 85px;
-    height: 130px;
-    background: #ffffff;
-    border-radius: 45px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding-top: 12px;
-    cursor: grab;
-    user-select: none;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-}
-
-/* 각각 테마 컬러만 다름 */
-#recommend-switch {
-    border: 3px solid #ffca28;
-}
-
-#partner-switch {
-    border: 3px solid #4caf50;
-}
-
-/* 핸들 공통 스타일 */
-.switch-handle {
-    width: 70%;
-    height: 45px;
-    border-radius: 22px;
-    text-align: center;
-    font-size: 15px;
-    line-height: 45px;
-    font-weight: 700;
-    transition: 0.2s;
-}
-
-/* 색상 */
-#recommend-switch .switch-handle { background: #ffd54f; color: #333; }
-#recommend-switch.dragging .switch-handle { background: #ffb300; }
-
-#partner-switch .switch-handle { background: #a5d6a7; color: #1b5e20; }
-#partner-switch.dragging .switch-handle { background: #66bb6a; }
+/* =========================
+   제휴업체 설명 카드
+   ========================= */
 .affiliate-section {
     padding: 20px;
 }
@@ -630,4 +513,243 @@ footer {
 .affiliate-card small {
     font-size: 13px;
     color: #555;
+}
+
+/* ===================================== */
+/*        🌙 다크모드 + 전등 스위치        */
+/* ===================================== */
+
+/* 헤더 안에 전등 스위치 위치 기준 */
+header .header-container {
+    position: relative;
+}
+
+/* 💡 다크모드 스위치 (제휴/이건어때와 동일한 캡슐형) */
+#darkmode-switch {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 85px;
+    height: 130px;
+    background: #ffffff;
+    border-radius: 45px;
+    border: 3px solid #9fa8da;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 8px;
+    cursor: pointer;
+    user-select: none;
+    z-index: 1500;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    transition: 0.2s;
+}
+
+#darkmode-switch:hover {
+    transform: translateY(1px);
+}
+
+/* 전등 끈 */
+#darkmode-switch .lamp-wire {
+    width: 2px;
+    height: 38px;
+    background: #cfcfcf;
+    margin-top: 5px;
+}
+
+/* 전구 */
+#darkmode-switch .lamp-bulb {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #f5f5f5;
+    border: 2px solid #ffca28;
+    margin-top: 6px;
+    box-shadow: 0 0 0 rgba(255, 241, 118, 0);
+    transition: 0.25s;
+}
+
+/* 라벨 */
+#darkmode-switch .lamp-label {
+    margin-top: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #555;
+}
+
+/* 🌙 다크모드 전체 스타일 */
+body.dark-mode {
+    background-color: #111;
+    color: #eee;
+}
+
+body.dark-mode header {
+    background: #181818;
+    border-bottom: 1px solid #333;
+}
+
+body.dark-mode nav ul li a {
+    color: #eee;
+}
+
+body.dark-mode .restaurant-card {
+    background: #1c1c1c !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.6) !important;
+}
+
+body.dark-mode .restaurant-card .category,
+body.dark-mode .restaurant-card .rating,
+body.dark-mode .restaurant-card .summary {
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode .view-detail {
+    background-color: #ffb300 !important;
+    color: #111 !important;
+}
+
+body.dark-mode footer {
+    background: #181818;
+    color: #bdbdbd;
+}
+
+body.dark-mode .pagination a,
+body.dark-mode .pagination span {
+    color: #eee;
+}
+
+/* 전구 빛나는 효과 */
+body.dark-mode #darkmode-switch .lamp-bulb {
+    background: #ffeb3b;
+    box-shadow:
+        0 0 10px rgba(255, 241, 118, 0.9),
+        0 0 18px rgba(255, 241, 118, 0.7);
+}
+
+body.dark-mode #darkmode-switch .lamp-label {
+    color: #fff;
+}
+/* =====================================
+   🌙 다크모드 – 상세 페이지( inform-f1 등 )
+   ===================================== */
+
+/* 상세 페이지 배경을 어두운 톤으로 */
+body.dark-mode .detail-page {
+    background: linear-gradient(135deg, #111111 0%, #151515 40%, #101010 100%);
+}
+
+/* 카드 전체 배경/테두리/그림자 어둡게 */
+body.dark-mode .detail-card {
+    background: #1b1b1b;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+    border: 1px solid #333;
+}
+
+/* 텍스트들 색깔 조정 */
+body.dark-mode .detail-info h2 {
+    color: #f5f5f5;
+}
+
+body.dark-mode .detail-tags,
+body.dark-mode .detail-rating,
+body.dark-mode .detail-desc {
+    color: #dddddd;
+}
+
+/* 메뉴 섹션 제목들 */
+body.dark-mode .menu-section h3,
+body.dark-mode .menu-column h4 {
+    color: #f5f5f5;
+    border-bottom-color: #444;
+}
+
+/* 메뉴 리스트 배경/테두리 */
+body.dark-mode .menu-list li {
+    background: #222;
+    border: 1px solid #333;
+}
+
+body.dark-mode .menu-list li:hover {
+    background: #252525;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
+}
+
+/* 메뉴 안 글자들 */
+body.dark-mode .menu-name {
+    color: #f5f5f5;
+}
+
+body.dark-mode .menu-desc {
+    color: #b0b0b0;
+}
+
+body.dark-mode .menu-price {
+    color: #ffeb3b;
+}
+
+/* 뒤로가기 버튼 */
+body.dark-mode .back-button {
+    background: #333;
+    color: #f5f5f5;
+}
+
+body.dark-mode .back-button:hover {
+    background: #444;
+}
+
+/* 현가네 길찾기 플로팅 버튼 */
+body.dark-mode .floating-nav {
+    background: #2563eb;
+    color: #ffffff;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.7);
+}
+/* =====================================
+   🌙 다크모드 – 추천 페이지 (recommend.html)
+   ===================================== */
+
+body.dark-mode {
+    background: #111111 !important;
+}
+
+/* 추천 카드 박스 */
+body.dark-mode .recommend-box {
+    background: #1e1e1e;
+    border: 1px solid #333;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+}
+
+/* 텍스트 색상 */
+body.dark-mode .recommend-name,
+body.dark-mode .recommend-category,
+body.dark-mode .recommend-rating,
+body.dark-mode .recommend-summary {
+    color: #f5f5f5 !important;
+}
+
+/* 이미지 약간 어둡게 */
+body.dark-mode .recommend-img {
+    filter: brightness(0.85);
+}
+
+/* 버튼들 */
+body.dark-mode .btn-detail {
+    background: #ffb300;
+    color: #111;
+}
+
+body.dark-mode .btn-again {
+    background: #333;
+    color: #f5f5f5;
+    border: 1px solid #555;
+}
+
+/* 헤더 */
+body.dark-mode header {
+    background: #181818 !important;
+}
+
+/* 푸터 */
+body.dark-mode footer {
+    background: #181818 !important;
+    color: #bdbdbd !important;
 }
