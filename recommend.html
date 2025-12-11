@@ -3,232 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>오늘의 추천 메뉴 | 우리 학교 앞 맛집 지도</title>
+    <title>🔥 오늘의 추천 메뉴</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+
     <style>
-        /* 추천 페이지용 가벼운 추가 스타일 (공용 CSS 건드리기 싫으면 여기만) */
-        .today-wrapper {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 32px 16px 64px;
+        body {
+            text-align: center;
+            padding: 20px;
+            background: #fff8e1;
+            font-family: 'Noto Sans KR', sans-serif;
         }
 
-        .today-title {
-            font-size: 1.4rem;
+        h1 {
+            margin-top: 40px;
+            font-size: 32px;
+            color: #ff9800;
+        }
+
+        .recommend-box {
+            margin: 40px auto;
+            padding: 25px;
+            width: 85%;
+            max-width: 420px;
+            background: #ffffff;
+            border-radius: 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .recommend-img {
+            width: 100%;
+            border-radius: 14px;
+            margin-bottom: 18px;
+        }
+
+        .recommend-name {
+            font-size: 26px;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
-        .today-sub {
-            font-size: 0.9rem;
-            color: #6b7280;
-            margin-bottom: 24px;
+        .recommend-category {
+            color: #757575;
+            margin-bottom: 6px;
         }
 
-        .today-actions {
+        .recommend-rating {
+            font-weight: 700;
+            color: #ff6f00;
+            margin-bottom: 12px;
+        }
+
+        .recommend-summary {
+            margin-bottom: 20px;
+        }
+
+        .btn-box {
             display: flex;
-            gap: 12px;
-            margin-top: 16px;
+            justify-content: center;
+            gap: 15px;
         }
 
-        .btn-primary, .btn-secondary {
-            border-radius: 999px;
-            padding: 8px 16px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            border: none;
+        .btn {
+            padding: 12px 18px;
+            font-size: 17px;
+            font-weight: 700;
+            border-radius: 10px;
+            text-decoration: none;
             cursor: pointer;
+            display: inline-block;
         }
 
-        .btn-primary {
-            background: #2563eb;
-            color: #f9fafb;
+        .btn-detail {
+            background: #ff9800;
+            color: white;
         }
 
-        .btn-secondary {
-            background: #111827;
-            color: #e5e7eb;
+        .btn-again {
+            background: #eeeeee;
+            color: #333;
         }
 
-        .today-card {
-            margin-top: 12px;
+        footer {
+            margin-top: 40px;
+            color: #999;
         }
     </style>
 </head>
 <body>
 
-<header>
-    <div class="header-container">
-        <h1>🍔 우리 학교 앞 맛집 지도</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">전체</a></li>
-                <li><a href="index-korean.html">한식</a></li>
-                <li><a href="index-western.html">양식</a></li>
-                <li><a href="index-japanese.html">일식</a></li>
-                <li><a href="index-chinese.html">중식</a></li>
-            </ul>
-        </nav>
+<h1>🔥 오늘의 추천 메뉴</h1>
+
+<div class="recommend-box" id="recommendBox">
+    <img id="recImg" class="recommend-img" src="" alt="추천 이미지">
+    <div id="recName" class="recommend-name"></div>
+    <div id="recCategory" class="recommend-category"></div>
+    <div id="recRating" class="recommend-rating"></div>
+    <div id="recSummary" class="recommend-summary"></div>
+
+    <div class="btn-box">
+        <a id="recDetail" href="#" class="btn btn-detail">식당 자세히 보기</a>
+        <button class="btn btn-again" onclick="pickRandom()">다시 추천</button>
     </div>
-</header>
-
-<main class="container">
-    <div class="today-wrapper">
-        <h2 class="today-title">✨ 오늘 이런 메뉴 어때요?</h2>
-        <p class="today-sub">페이지를 열 때마다 우리 학교 앞 맛집 중 하나를 랜덤으로 추천해 드립니다.</p>
-
-        <!-- 여기 아래 카드 하나에 랜덤 식당 정보가 들어감 -->
-        <section class="restaurant-list">
-            <article class="restaurant-card today-card">
-                <img id="today-img" src="" alt="오늘의 추천 가게 이미지">
-                <div class="card-content">
-                    <h3 id="today-name">가게 이름</h3>
-                    <p id="today-category" class="category">카테고리</p>
-                    <p id="today-rating" class="rating">⭐️ 4.5</p>
-                    <p id="today-summary" class="summary">가게 설명</p>
-
-                    <div class="today-actions">
-                        <button id="go-detail" class="btn-primary">⬅ 이 가게 상세보기</button>
-                        <button id="reroll" class="btn-secondary">🎲 다른 메뉴 추천</button>
-                    </div>
-                </div>
-            </article>
-        </section>
-    </div>
-</main>
+</div>
 
 <footer>
-    <p>&copy; 2025 학교 앞 맛집 지도. All Rights Reserved. | 문의: contact@schoolfood.com</p>
+    <p>&copy; 2025 우리 학교 앞 맛집 지도</p>
 </footer>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    // index / index2 / 중국, 한식 페이지에서 쓰던 가게들 그대로 참고
-    const restaurants = [
-        {
-            name: "현가네 병천순대 장터국밥",
-            category: "#한식 #국밥 #가성비",
-            rating: "⭐️ 4.5",
-            summary: "든든한 순대국밥과 전골, 수육까지 즐길 수 있는 국밥 전문점.",
-            img: "https://d12zq4w4guyljn.cloudfront.net/750_750_20221210040947_photo2_0a887259f5bf.webp",
-            link: "inform-f1.html"
-        },
-        {
-            name: "동양솥밥",
-            category: "#한식 #솥밥 #깔끔한한끼",
-            rating: "⭐️ 4.7",
-            summary: "마파연두부, 규동, 전복솥밥 등 다양한 솥밥 메뉴를 즐길 수 있는 깔끔한 식당.",
-            img: "https://lh6.googleusercontent.com/proxy/mFlPiDvRx4kH7DTTCfyQNvrqncjlwe34IAaRhH1jVOBiZ-HjBKWi9JqSp_cjTqwoNxq2cd64sIVQuNr8sn7SypUKIRUxAKHgUKkR_YMJNKFdMXFLnmG-OIH34uo3SL6C-BokXB2qtz_j4sI0bnhofE9BlpJB41SNgM7PLjdMN57Vcf6CaM8JzwXrScyApmcZ29FOBSBvCBg_0DmOSqVfsZ38",
-            link: "inform-f2.html"
-        },
-        {
-            name: "앤의 식탁",
-            category: "#양식 #파스타 #데이트",
-            rating: "⭐️ 4.4",
-            summary: "분위기 좋은 공간에서 파스타와 리조또를 즐길 수 있는 양식당.",
-            img: "https://mblogthumb-phinf.pstatic.net/MjAyMTEyMjJfMjk1/MDAxNjQwMTg0NjY2NDE3.RBbB9fGP8VdR-3ub6sUq7w_mGv4QsBnykQewqmDrBCUg.w3hVOiOs7ztkFA5nVmgUQEMVeOu3PpH6ALiD2JKtIZcg.JPEG.lastlove62/SE-29d1501f-5c13-11ec-80a4-4fb61b0ebe3d.jpg?type=w800",
-            link: "inform-f3.html"
-        },
-        {
-            name: "에비수",
-            category: "#일식 #연어롤 #초밥",
-            rating: "⭐️ 4.2",
-            summary: "연어롤과 초밥을 중심으로 다양한 일식 메뉴를 즐길 수 있는 가게.",
-            img: "https://mblogthumb-phinf.pstatic.net/MjAyNDA0MjJfMjQ0/MDAxNzEzNzIxNTgxNjEz.UAdXxBSxarLv-78M--yvLdoDLmzFiD0lXYhVWHyhrGkg.UyjtwQJrQCalFWKN1fyTzaef95FetDnsBUiAZew4OmQg.JPEG/IMG_6585.jpg?type=w800",
-            link: "inform-f4.html"
-        },
-        {
-            name: "9292양꼬치",
-            category: "#중식 #양꼬치 #술안주",
-            rating: "⭐️ 4.7",
-            summary: "숯불향 가득한 양꼬치와 꼬치류를 즐길 수 있는 중식 주점.",
-            img: "f5.jpg",
-            link: "inform-f5.html"
-        },
-        {
-            name: "도야짬뽕",
-            category: "#중식 #짬뽕 #탕수육",
-            rating: "⭐️ 4.2",
-            summary: "매콤하고 깊은 국물 맛이 특징인 짬뽕 전문 중식당.",
-            img: "https://cdn.imweb.me/upload/S20210319b1bb7a43ae18f/bb3cda1f3954b.png",
-            link: "inform-f6.html"
-        },
-        {
-            name: "예산닭갈비감자탕",
-            category: "#한식 #닭갈비 #감자탕",
-            rating: "⭐️ 4.3",
-            summary: "칼칼한 닭갈비와 진한 감자탕을 함께 즐길 수 있는 든든한 식당.",
-            img: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20190128_266%2F1548638283666Vkdac_JPEG%2F1fnaUO55gpx6F4jil5ykzjTO.jpeg.jpg",
-            link: "inform-f7.html"
-        },
-        {
-            name: "원조청학칡냉면",
-            category: "#한식 #냉면 #수육",
-            rating: "⭐️ 4.4",
-            summary: "쫄깃한 칡면과 살얼음 동동 육수, 수육 조합이 인기인 냉면집.",
-            img: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNTA2MDRfNzcg%2FMDAxNzQ4OTk1MzUxOTEx.zxJvNqSuKsVkVNYKQ9DGliGKXy4zLVKNb3hGJsmNOJAg.TLgyom95Zvj1BgZHL1KBePGkOMrTY6R47xDipZpkCaIg.JPEG%2F20250603_173943.jpg",
-            link: "inform-f8.html"
-        },
-        {
-            name: "보배반점 안산한양대점",
-            category: "#중식 #짬뽕 #짜장",
-            rating: "⭐️ 4.6",
-            summary: "고기 듬뿍 짬뽕과 짜장면이 인기인 24시간 중식당.",
-            img: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20251020_286%2F17609224192950oUg4_JPEG%2FIMG_1252_1.jpg",
-            link: "inform-f9.html"
-        },
-        {
-            name: "탕화쿵푸마라탕 한양대에리카점",
-            category: "#중식 #마라탕 #마라샹궈",
-            rating: "⭐️ 4.5",
-            summary: "직접 재료를 골라 담는 얼얼한 마라탕과 마라샹궈 전문점.",
-            img: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20250224_94%2F1740385890135SgbOn_PNG%2FKakaoTalk_20241114_091139402.png",
-            link: "inform-f10.html"
-        },
-        {
-            name: "대홍훠궈샤브샤브 한양대점",
-            category: "#중식 #훠궈 #샤브샤브",
-            rating: "⭐️ 4.7",
-            summary: "홍탕·백탕 육수와 다양한 재료를 무한리필로 즐길 수 있는 훠궈 맛집.",
-            img: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20251018_282%2F1760773174030DnvlC_JPEG%2F2355.jpg",
-            link: "inform-f11.html"
-        }
-    ];
+/* --------------------------------------------
+   🔥 전체 식당 데이터 (1~18 모두 포함)
+---------------------------------------------*/
+const restaurants = [
+    { name: "현가네 병천순대 장터국밥", category: "#한식 #국밥 #가성비", rating: "⭐️ 4.5", summary: "든든한 순대국밥과 전골, 수육까지 즐길 수 있는 국밥 전문점.", img: "https://d12zq4w4guyljn.cloudfront.net/750_750_20221210040947_photo2_0a887259f5bf.webp", link: "inform-f1.html" },
+    { name: "동양솥밥", category: "#한식 #솥밥 #깔끔한한끼", rating: "⭐️ 4.7", summary: "마파연두부, 규동, 전복솥밥 등 다양한 솥밥 메뉴가 인기.", img: "https://lh6.googleusercontent.com/proxy/mFlPiDvRx4kH7DTTCfyQNvrqncjlwe34IAaRhH1jVOBiZ-HjBKWi9JqSp_cjTqwoNxq2cd64sIVQuNr8sn7SypUKIRUxAKHgUKkR_YMJNKFdMXFLnmG-OIH34uo3SL6C-BokXB2qtz_j4sI0bnhofE9BlpJB41SNgM7PLjdMN57Vcf6CaM8JzwXrScyApmcZ29FOBSBvCBg_0DmOSqVfsZ38", link: "inform-f2.html" },
+    { name: "앤의 식탁", category: "#양식 #파스타 #데이트", rating: "⭐️ 4.4", summary: "분위기 좋은 공간에서 파스타와 리조또를 즐길 수 있는 양식당.", img: "https://mblogthumb-phinf.pstatic.net/MjAyMTEyMjJfMjk1/MDAxNjQwMTg0NjY2NDE3.jpg", link: "inform-f3.html" },
+    { name: "에비수", category: "#일식 #연어롤 #초밥", rating: "⭐️ 4.2", summary: "연어롤과 초밥을 중심으로 다양한 일식 메뉴를 즐길 수 있는 가게.", img: "https://mblogthumb-phinf.pstatic.net/MjAyNDA0MjJfMjQ0/MDAxNzEzNzIxNTgxNjEz.jpg", link: "inform-f4.html" },
+    { name: "9292양꼬치", category: "#중식 #양꼬치 #술안주", rating: "⭐️ 4.7", summary: "숯불향 가득한 양꼬치와 꼬치류를 즐길 수 있는 중식 주점.", img: "f5.jpg", link: "inform-f5.html" },
+    { name: "도야짬뽕", category: "#중식 #짬뽕 #탕수육", rating: "⭐️ 4.2", summary: "매콤하고 깊은 국물 맛이 특징인 짬뽕 전문 중식당.", img: "https://cdn.imweb.me/upload/S20210319b1bb7a43ae18f/bb3cda1f3954b.png", link: "inform-f6.html" },
+    { name: "예산닭갈비감자탕", category: "#한식 #닭갈비 #감자탕", rating: "⭐️ 4.3", summary: "칼칼한 닭갈비와 진한 감자탕을 함께 즐길 수 있는 든든한 식당.", img: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20190128_266.jpg", link: "inform-f7.html" },
+    { name: "원조청학칡냉면", category: "#한식 #냉면 #수육", rating: "⭐️ 4.4", summary: "쫄깃한 칡면과 살얼음 육수, 수육 조합이 인기인 냉면집.", img: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNTA2MDR.jpg", link: "inform-f8.html" },
+    { name: "보배반점 안산한양대점", category: "#중식 #짬뽕 #짜장", rating: "⭐️ 4.6", summary: "고기 듬뿍 짬뽕과 짜장면이 인기인 24시간 중식당.", img: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20251020_286.jpg", link: "inform-f9.html" },
+    { name: "탕화쿵푸마라탕 한양대에리카점", category: "#중식 #마라탕 #마라샹궈", rating: "⭐️ 4.5", summary: "직접 재료를 골라 담는 얼얼한 마라탕과 마라샹궈 전문점.", img: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20250224_94.jpg", link: "inform-f10.html" },
+    { name: "대홍훠궈샤브샤브 한양대점", category: "#중식 #훠궈 #샤브샤브", rating: "⭐️ 4.7", summary: "홍탕·백탕 육수와 다양한 재료를 무한리필로 즐길 수 있는 훠궈 맛집.", img: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20251018_282.jpg", link: "inform-f11.html" },
+    { name: "코운즈", category: "#일식 #라멘 #마제소바", rating: "⭐️ 4.5", summary: "30시간 저온숙성 자가제면으로 만드는 라멘 전문점.", img: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20240726_276.jpg", link: "inform-f12.html" },
+    { name: "파앤피파스타하우스", category: "#양식 #파스타 #에리카맛집", rating: "⭐️ 4.6", summary: "사이드 메뉴 풍미가 좋은 파스타 전문점.", img: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20250225_116.jpg", link: "inform-f13.html" },
+    { name: "밀플랜비 한양대에리카점", category: "#양식 #부리또 #핫도그", rating: "⭐️ 4.6", summary: "부리또·핫도그를 가성비 좋게 즐길 수 있는 집.", img: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20250226_220.jpg", link: "inform-f14.html" },
+    { name: "페퍼로니버튼 에리카점", category: "#양식 #피자 #파스타", rating: "⭐️ 4.5", summary: "페퍼로니 피자가 유명한 피자 전문점.", img: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20201130_295.jpg", link: "inform-f15.html" },
+    { name: "두루정 안산한양대점", category: "#한식 #두루치기 #짜글이", rating: "⭐️ 4.6", summary: "파제육 두루치기와 짜글이가 인기인 한식 맛집.", img: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20251019_87.jpg", link: "inform-f16.html" },
+    { name: "백소정 안산한양대점", category: "#일식 #카레 #돈카츠", rating: "⭐️ 4.5", summary: "진한 카레와 바삭돈카츠 조합이 인기.", img: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20251127_162.jpg", link: "inform-f17.html" },
+    { name: "핵밥 안산한양대점", category: "#일식 #라멘 #덮밥", rating: "⭐️ 4.6", summary: "라멘과 덮밥을 즐길 수 있는 캐주얼 일식 맛집.", img: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20251201_127.jpg", link: "inform-f18.html" }
+];
 
-    const imgEl = document.getElementById("today-img");
-    const nameEl = document.getElementById("today-name");
-    const catEl = document.getElementById("today-category");
-    const ratingEl = document.getElementById("today-rating");
-    const summaryEl = document.getElementById("today-summary");
-    const detailBtn = document.getElementById("go-detail");
-    const rerollBtn = document.getElementById("reroll");
+/* --------------------------------------------
+   🔥 랜덤 추천 함수
+---------------------------------------------*/
+function pickRandom() {
+    const r = restaurants[Math.floor(Math.random() * restaurants.length)];
 
-    let current = null;
+    document.getElementById("recImg").src = r.img;
+    document.getElementById("recName").textContent = r.name;
+    document.getElementById("recCategory").textContent = r.category;
+    document.getElementById("recRating").textContent = r.rating;
+    document.getElementById("recSummary").textContent = r.summary;
+    document.getElementById("recDetail").href = r.link;
+}
 
-    function pickRandom() {
-        const idx = Math.floor(Math.random() * restaurants.length);
-        current = restaurants[idx];
-
-        imgEl.src = current.img;
-        imgEl.alt = current.name;
-        nameEl.textContent = current.name;
-        catEl.textContent = current.category;
-        ratingEl.textContent = current.rating;
-        summaryEl.textContent = current.summary;
-    }
-
-    pickRandom();
-
-    detailBtn.addEventListener("click", function () {
-        if (!current) return;
-        window.location.href = current.link;
-    });
-
-    rerollBtn.addEventListener("click", function () {
-        pickRandom();
-    });
-});
+pickRandom();  // 페이지 열리자마자 자동 실행
 </script>
 
 </body>
