@@ -410,3 +410,86 @@ footer {
 .pagination a.active {
     color: #ff5722;
 }
+/* ============================
+   오늘의 추천 메뉴 토글 스위치
+   ============================ */
+.today-toggle {
+  position: fixed;
+  top: 80px;           /* 헤더보다 살짝 아래 */
+  right: 24px;
+  z-index: 1000;
+  user-select: none;
+}
+
+.today-toggle-track {
+  position: relative;
+  width: 180px;
+  height: 40px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.95); /* 어두운 배경 */
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.7);
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.today-toggle-text {
+  font-size: 0.78rem;
+  color: #e5e7eb;
+  margin-left: 6px;
+  white-space: nowrap;
+}
+
+.today-toggle-hint {
+  font-size: 0.7rem;
+  color: #9ca3af;
+  margin-left: auto;
+  margin-right: 40px; /* 손잡이 영역 확보 */
+}
+
+/* 손잡이(전등 버튼) */
+.today-toggle-thumb {
+  position: absolute;
+  top: 4px;
+  left: 130px; /* 기본은 오른쪽에 붙어 있게 */
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: #fde68a; /* 노란 전구 느낌 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 18px rgba(250, 204, 21, 0.7);
+  cursor: grab;
+  transition: left 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+}
+
+.today-toggle-thumb span {
+  font-size: 1rem;
+}
+
+.today-toggle-thumb.dragging {
+  cursor: grabbing;
+  transition: none; /* 드래그 중엔 애니메이션 제거 */
+  transform: scale(0.96);
+}
+.today-toggle-thumb {
+  position: absolute;
+  top: 2px;          /* 살짝 위로 올려서 트랙 안에 예쁘게 맞추기 */
+  left: 130px;       /* 기본은 오른쪽에 붙어 있게 (JS에서 다시 계산함) */
+  width: 40px;       /* 🔹 크기 키움 (32 → 40) */
+  height: 40px;      /* 🔹 크기 키움 (32 → 40) */
+  border-radius: 999px;
+  background: #fde68a; /* 노란 전구 느낌 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 18px rgba(250, 204, 21, 0.7);
+  cursor: grab;
+  transition: left 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+}
+
+.today-toggle-thumb span {
+  font-size: 1.1rem;  /* 이모지도 살짝 크게 */
+}
