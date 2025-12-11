@@ -6,8 +6,112 @@
     <title>🏫 우리 학교 앞 맛집 지도 - 중식 모아보기</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* 🔥 오늘의 추천 메뉴 스위치 */
+        #recommend-switch {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 85px;
+            height: 130px;
+            background: #ffffff;
+            border-radius: 45px;
+            border: 3px solid #ffca28;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 12px;
+            cursor: grab;
+            user-select: none;
+            z-index: 2000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+        }
+
+        #recommend-switch .switch-handle {
+            width: 70%;
+            height: 45px;
+            background: #ffd54f;
+            border-radius: 22px;
+            text-align: center;
+            font-size: 15px;
+            color: #333;
+            line-height: 45px;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+
+        #recommend-switch.dragging .switch-handle {
+            background: #ffb300;
+        }
+
+        /* 🟢 제휴 업체 스위치 */
+        #partner-switch {
+            position: fixed;
+            top: 20px;
+            right: 120px;
+            width: 85px;
+            height: 130px;
+            background: #ffffff;
+            border-radius: 45px;
+            border: 3px solid #4ade80;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 12px;
+            cursor: grab;
+            user-select: none;
+            z-index: 2000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+        }
+
+        #partner-switch .switch-handle {
+            width: 70%;
+            height: 45px;
+            background: #86efac;
+            border-radius: 22px;
+            text-align: center;
+            font-size: 15px;
+            color: #333;
+            line-height: 45px;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+
+        #partner-switch.dragging .switch-handle {
+            background: #4ade80;
+        }
+
+        /* 페이지네이션 */
+        .pagination {
+            margin: 30px auto;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .pagination a, .pagination span {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .current-page {
+            color: #ff9800;
+        }
+    </style>
 </head>
 <body>
+
+<!-- 🔥 오늘의 추천 메뉴 스위치 -->
+<div id="recommend-switch">
+    <div class="switch-handle">이건어때▼</div>
+</div>
+
+<!-- 🟢 제휴 업체 스위치 -->
+<div id="partner-switch">
+    <div class="switch-handle">제휴업체▼</div>
+</div>
 
 <header>
     <div class="header-container">
@@ -48,7 +152,7 @@
 
         <!-- 🍲 f6 도야짬뽕 -->
         <article class="restaurant-card" id="Chinese">
-            <img src="https://cdn.imweb.me/upload/S20210319b1bb7a43ae18f/bb3cda1f3954b.png"
+            <img src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20241212_210%2F1733967717830s5yTj_JPEG%2FP20240227_155644869_BD38FE69-427D-44D3-A9AC-33FF25525A39_-_%25BA%25B9%25BB%25E7%25BA%25BB.JPG"
                  alt="도야짬뽕 이미지">
             <div class="card-content">
                 <h3>🍲 도야짬뽕</h3>
@@ -80,7 +184,7 @@
                 <h3>🌶️ 탕화쿵푸마라탕 한양대점</h3>
                 <p class="category">#중식 #마라탕 #마라샹궈</p>
                 <p class="rating">⭐️ 4.5</p>
-                <p class="summary">얼얼한 매운맛이 있는 마라탕 전문점</p>
+                <p class="summary">얼얼하고 중독성 있는 마라탕 전문점</p>
                 <a href="inform-f10.html" class="view-detail">자세히 보기</a>
             </div>
         </article>
@@ -107,6 +211,70 @@
 <script src="darkmode.js"></script>
 </body>
 </html>
+
+<script>
+/* 🔥 이건어때 스위치 */
+const switchBox = document.getElementById("recommend-switch");
+const handle = switchBox.querySelector(".switch-handle");
+let isDragging = false;
+let startY = 0;
+
+handle.addEventListener("mousedown", (e) => {
+    isDragging = true;
+    startY = e.clientY;
+    switchBox.classList.add("dragging");
+});
+
+document.addEventListener("mousemove", (e) => {
+    if (!isDragging) return;
+    let moveY = e.clientY - startY;
+
+    if (moveY > 0 && moveY < 90) {
+        handle.style.transform = `translateY(${moveY}px)`;
+    }
+
+    if (moveY >= 90) {
+        window.location.href = "recommend.html";
+    }
+});
+
+document.addEventListener("mouseup", () => {
+    isDragging = false;
+    switchBox.classList.remove("dragging");
+    handle.style.transform = "translateY(0)";
+});
+
+/* 🟢 제휴업체 스위치 */
+const partnerBox = document.getElementById("partner-switch");
+const partnerHandle = partnerBox.querySelector(".switch-handle");
+let partnerDrag = false;
+let partnerStart = 0;
+
+partnerHandle.addEventListener("mousedown", (e) => {
+    partnerDrag = true;
+    partnerStart = e.clientY;
+    partnerBox.classList.add("dragging");
+});
+
+document.addEventListener("mousemove", (e) => {
+    if (!partnerDrag) return;
+    let moveY = e.clientY - partnerStart;
+
+    if (moveY > 0 && moveY < 90) {
+        partnerHandle.style.transform = `translateY(${moveY}px)`;
+    }
+
+    if (moveY >= 90) {
+        window.location.href = "partner-drink.html";
+    }
+});
+
+document.addEventListener("mouseup", () => {
+    partnerDrag = false;
+    partnerBox.classList.remove("dragging");
+    partnerHandle.style.transform = "translateY(0)";
+});
+</script>
 
 </body>
 </html>

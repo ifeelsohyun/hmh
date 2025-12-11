@@ -45,7 +45,44 @@
             background: #ffb300;
         }
 
-        /* 페이지네이션 공통 */
+        /* 🟢 제휴 업체 스위치 */
+        #partner-switch {
+            position: fixed;
+            top: 20px;
+            right: 120px;
+            width: 85px;
+            height: 130px;
+            background: #ffffff;
+            border-radius: 45px;
+            border: 3px solid #4ade80;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 12px;
+            cursor: grab;
+            user-select: none;
+            z-index: 2000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+        }
+
+        #partner-switch .switch-handle {
+            width: 70%;
+            height: 45px;
+            background: #86efac;
+            border-radius: 22px;
+            text-align: center;
+            font-size: 15px;
+            color: #333;
+            line-height: 45px;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+
+        #partner-switch.dragging .switch-handle {
+            background: #4ade80;
+        }
+
+        /* 페이지네이션 공통 (여기선 안 쓰이지만 통일용) */
         .pagination {
             margin: 30px auto;
             text-align: center;
@@ -72,8 +109,10 @@
     <div class="switch-handle">이건어때▼</div>
 </div>
 
-    </head>
-    <body>
+<!-- 🟢 제휴 업체 스위치 -->
+<div id="partner-switch">
+    <div class="switch-handle">제휴업체▼</div>
+</div>
 
 <header>
     <div class="header-container">
@@ -115,7 +154,7 @@
 
                 <p class="detail-desc">
                     신선한 소고기·양고기, 다양한 야채, 만두·완자·면류 등  
-                    **50여 가지 재료를 무한리필로 마음껏 즐길 수 있는 샤브샤브 전문점**입니다.
+                    <strong>50여 가지 재료를 무한리필로 마음껏 즐길 수 있는 샤브샤브 전문점</strong>입니다.
                     단체 이용도 가능하고 고기·야채 품질이 좋아 만족도가 높은 곳이에요.
                 </p>
 
@@ -132,7 +171,6 @@
             <h3>메뉴 & 가격</h3>
 
             <div class="menu-grid">
-                
                 <!-- 왼쪽 단독 컬럼 -->
                 <div class="menu-column">
                     <h4>무한리필 샤브샤브</h4>
@@ -182,7 +220,7 @@
 </a>
 
 <script>
-    /* 🔥 드래그 스위치 기능 (공통) */
+/* 🔥 이건어때 스위치 드래그 */
 const switchBox = document.getElementById("recommend-switch");
 const handle = switchBox.querySelector(".switch-handle");
 let isDragging = false;
@@ -211,6 +249,37 @@ document.addEventListener("mouseup", () => {
     isDragging = false;
     switchBox.classList.remove("dragging");
     handle.style.transform = "translateY(0)";
+});
+
+/* 🟢 제휴업체 스위치 드래그 */
+const partnerBox = document.getElementById("partner-switch");
+const partnerHandle = partnerBox.querySelector(".switch-handle");
+let partnerDrag = false;
+let partnerStart = 0;
+
+partnerHandle.addEventListener("mousedown", (e) => {
+    partnerDrag = true;
+    partnerStart = e.clientY;
+    partnerBox.classList.add("dragging");
+});
+
+document.addEventListener("mousemove", (e) => {
+    if (!partnerDrag) return;
+    let moveY = e.clientY - partnerStart;
+
+    if (moveY > 0 && moveY < 90) {
+        partnerHandle.style.transform = `translateY(${moveY}px)`;
+    }
+
+    if (moveY >= 90) {
+        window.location.href = "partner-drink.html";
+    }
+});
+
+document.addEventListener("mouseup", () => {
+    partnerDrag = false;
+    partnerBox.classList.remove("dragging");
+    partnerHandle.style.transform = "translateY(0)";
 });
 </script>
 <script src="darkmode.js"></script>

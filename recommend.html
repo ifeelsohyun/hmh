@@ -48,15 +48,18 @@
         .recommend-box {
             padding: 25px;
             width: 85%;
-            max-width: 420px;
+            max-width: 510px;
             background: #ffffff;
             border-radius: 18px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.15);
             text-align: center;
         }
 
+        /* 🔥 사진 크기 통일 */
         .recommend-img {
             width: 100%;
+            height: 260px;
+            object-fit: cover;
             border-radius: 14px;
             margin-bottom: 18px;
         }
@@ -294,6 +297,7 @@
         }
     </style>
 </head>
+
 <body>
 
 <!-- 🌓 다크모드 전등 스위치 -->
@@ -315,10 +319,8 @@
 <!-- 🔹 index.html과 같은 헤더 구조 -->
 <header>
     <div class="header-container">
-        <!-- 제목만 변경 -->
         <h1>🍔 오늘 이 메뉴는 어때?</h1>
 
-        <!-- 상단 카테고리 (index와 동일 구조) -->
         <nav>
             <ul>
                 <li><a href="index.html">전체</a></li>
@@ -357,30 +359,101 @@
 
 <script>
 /* --------------------------------------------
-   🔥 전체 식당 데이터 (1~18 모두 포함)
+   🔥 전체 식당 데이터 — 이미지 전부 교체됨
 ---------------------------------------------*/
 const restaurants = [
-    { name: "현가네 병천순대 장터국밥", category: "#한식 #국밥 #가성비", rating: "⭐️ 4.5", summary: "든든한 순대국밥과 전골, 수육까지 즐길 수 있는 국밥 전문점.", img: "https://d12zq4w4guyljn.cloudfront.net/750_750_20221210040947_photo2_0a887259f5bf.webp", link: "inform-f1.html" },
-    { name: "동양솥밥", category: "#한식 #솥밥 #깔끔한한끼", rating: "⭐️ 4.7", summary: "마파연두부, 규동, 전복솥밥 등 다양한 솥밥 메뉴가 인기.", img: "https://lh6.googleusercontent.com/proxy/mFlPiDvRx4kH7DTTCfyQNvrqncjlwe34IAaRhH1jVOBiZ-HjBKWi9JqSp_cjTqwoNxq2cd64sIVQuNr8sn7SypUKIRUxAKHgUKkR_YMJNKFdMXFLnmG-OIH34uo3SL6C-BokXB2qtz_j4sI0bnhofE9BlpJB41SNgM7PLjdMN57Vcf6CaM8JzwXrScyApmcZ29FOBSBvCBg_0DmOSqVfsZ38", link: "inform-f2.html" },
-    { name: "앤의 식탁", category: "#양식 #파스타 #데이트", rating: "⭐️ 4.4", summary: "분위기 좋은 공간에서 파스타와 리조또를 즐길 수 있는 양식당.", img: "https://mblogthumb-phinf.pstatic.net/MjAyMTEyMjJfMjk1/MDAxNjQwMTg0NjY2NDE3.jpg", link: "inform-f3.html" },
-    { name: "에비수", category: "#일식 #연어롤 #초밥", rating: "⭐️ 4.2", summary: "연어롤과 초밥을 중심으로 다양한 일식 메뉴를 즐길 수 있는 가게.", img: "https://mblogthumb-phinf.pstatic.net/MjAyNDA0MjJfMjQ0/MDAxNzEzNzIxNTgxNjEz.jpg", link: "inform-f4.html" },
-    { name: "9292양꼬치", category: "#중식 #양꼬치 #술안주", rating: "⭐️ 4.7", summary: "숯불향 가득한 양꼬치와 꼬치류를 즐길 수 있는 중식 주점.", img: "https://foodjatr5229.cdn-nhncommerce.com/New/04/221300050/221300050_b_1.jpg", link: "inform-f5.html" },
-    { name: "도야짬뽕", category: "#중식 #짬뽕 #탕수육", rating: "⭐️ 4.2", summary: "매콤하고 깊은 국물 맛이 특징인 짬뽕 전문 중식당.", img: "https://cdn.imweb.me/upload/S20210319b1bb7a43ae18f/bb3cda1f3954b.png", link: "inform-f6.html" },
-    { name: "예산닭갈비감자탕", category: "#한식 #닭갈비 #감자탕", rating: "⭐️ 4.3", summary: "칼칼한 닭갈비와 진한 감자탕을 함께 즐길 수 있는 든든한 식당.", img: "https://m.health.chosun.com/site/data/img_dir/2021/01/26/2021012602424_0.jpg", link: "inform-f7.html" },
-    { name: "원조청학칡냉면", category: "#한식 #냉면 #수육", rating: "⭐️ 4.4", summary: "쫄깃한 칡면과 살얼음 육수, 수육 조합이 인기인 냉면집.", img: "https://cdn.jhealthmedia.joins.com/news/photo/202008/22193_19747_0918.jpg", link: "inform-f8.html" },
-    { name: "보배반점 안산한양대점", category: "#중식 #짬뽕 #짜장", rating: "⭐️ 4.6", summary: "고기 듬뿍 짬뽕과 짜장면이 인기인 24시간 중식당.", img: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20251020_286%2F17609224192950oUg4_JPEG%2FIMG_1252_1.jpg", link: "inform-f9.html" },
-    { name: "탕화쿵푸마라탕 한양대에리카점", category: "#중식 #마라탕 #마라샹궈", rating: "⭐️ 4.5", summary: "직접 재료를 골라 담는 얼얼한 마라탕과 마라샹궈 전문점.", img: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20250224_94%2F3b4a6c92-d5d3-4b53-8b8b-460ac3b22e44.JPG", link: "inform-f10.html" },
-    { name: "대홍훠궈샤브샤브 한양대점", category: "#중식 #훠궈 #샤브샤브", rating: "⭐️ 4.7", summary: "홍탕·백탕 육수와 다양한 재료를 무한리필로 즐길 수 있는 훠궈 맛집.", img: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20251018_282%2F5a990cb6-a65f-11ef-993c-a0369f84f9ba.jpg", link: "inform-f11.html" },
-    { name: "코운즈", category: "#일식 #라멘 #마제소바", rating: "⭐️ 4.5", summary: "30시간 저온숙성 자가제면으로 만드는 라멘 전문점.", img: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20240726_276%2F744f8a12-4a3a-47b3-acc5-70f01a2f8296.JPG", link: "inform-f12.html" },
-    { name: "파앤피파스타하우스", category: "#양식 #파스타 #에리카맛집", rating: "⭐️ 4.6", summary: "사이드 메뉴 풍미가 좋은 파스타 전문점.", img: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20250225_116%2Fafe48470-d33e-11ee-8258-0242ac110002.jpg", link: "inform-f13.html" },
-    { name: "밀플랜비 한양대에리카점", category: "#양식 #부리또 #핫도그", rating: "⭐️ 4.6", summary: "부리또·핫도그를 가성비 좋게 즐길 수 있는 집.", img: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20250226_220%2F0fe2e57f-d3ef-11ee-b5b9-0a58a9feac02.jpg", link: "inform-f14.html" },
-    { name: "페퍼로니버튼 에리카점", category: "#양식 #피자 #파스타", rating: "⭐️ 4.5", summary: "페퍼로니 피자가 유명한 피자 전문점.", img: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20201130_295%2F1606723072062FoePb_JPEG%2FZKQbnqywF2wKqgyZX2KFZU7a.jpg", link: "inform-f15.html" },
-    { name: "두루정 안산한양대점", category: "#한식 #두루치기 #짜글이", rating: "⭐️ 4.6", summary: "파제육 두루치기와 짜글이가 인기인 한식 맛집.", img: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20251019_87%2F42784990-a65b-11ef-855e-a0369f84f9ba.jpg", link: "inform-f16.html" },
-    { name: "백소정 안산한양대점", category: "#일식 #카레 #돈카츠", rating: "⭐️ 4.5", summary: "진한 카레와 바삭돈카츠 조합이 인기.", img: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20251127_162%2Fe95e359c-ac23-11ef-b972-a0369f4c2ee9.jpg", link: "inform-f17.html" },
-    { name: "핵밥 안산한양대점", category: "#일식 #라멘 #덮밥", rating: "⭐️ 4.6", summary: "라멘과 덮밥을 즐길 수 있는 캐주얼 일식 맛집.", img: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20251201_127%2F693ee9fe-b7e4-11ef-bab8-7e06671333ea.jpg", link: "inform-f18.html" }
+    { name: "현가네 병천순대 장터국밥", category: "#한식 #국밥 #가성비", rating: "⭐️ 4.5",
+      summary: "든든한 순대국밥과 전골, 수육까지 즐길 수 있는 국밥 전문점.",
+      img: "https://image2.lotteimall.com/goods/15/08/01/1658010815_1.jpg/dims/resizemc/550x550/optimize",
+      link: "inform-f1.html" },
+
+    { name: "동양솥밥", category: "#한식 #솥밥 #깔끔한한끼", rating: "⭐️ 4.7",
+      summary: "마파연두부, 규동, 전복솥밥 등 다양한 솥밥 메뉴가 인기.",
+      img: "https://static.wtable.co.kr/image/production/upload/123000113/styles/30861/740a8cac-5aa0-4d53-9ff9-27f3defe8480.jpg?size=800x824",
+      link: "inform-f2.html" },
+
+    { name: "앤의 식탁", category: "#양식 #파스타 #데이트", rating: "⭐️ 4.4",
+      summary: "분위기 좋은 공간에서 파스타와 리조또를 즐길 수 있는 양식당.",
+      img: "https://img.siksinhot.com/place/1637545605638853.jpeg",
+      link: "inform-f3.html" },
+
+    { name: "에비수", category: "#일식 #연어롤 #초밥", rating: "⭐️ 4.2",
+      summary: "연어롤과 초밥을 중심으로 다양한 일식 메뉴를 즐길 수 있는 가게.",
+      img: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzA3MzFfMTQ5%2FMDAxNjkwODA1MDA4NDEw.k7z63zomIPc6TTKw-W1oi6_2ukkDTVteRyVx78YlQwwg.CT8bJxmYpF6WFs9jDAonGsqveFTYMUbndSgnUyLcsOsg.JPEG.gg_nn%2FIMG_7260.JPG&type=sc960_832",
+      link: "inform-f4.html" },
+
+    { name: "9292양꼬치", category: "#중식 #양꼬치 #술안주", rating: "⭐️ 4.7",
+      summary: "숯불향 가득한 양꼬치와 꼬치류를 즐길 수 있는 중식 주점.",
+      img: "https://foodjatr5229.cdn-nhncommerce.com/New/04/221300050/221300050_b_1.jpg",
+      link: "inform-f5.html" },
+
+    { name: "도야짬뽕", category: "#중식 #짬뽕 #탕수육", rating: "⭐️ 4.2",
+      summary: "매콤하고 깊은 국물 맛이 특징인 짬뽕 전문 중식당.",
+      img: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20241212_210%2F1733967717830s5yTj_JPEG%2FP20240227_155644869_BD38FE69-427D-44D3-A9AC-33FF25525A39_-_%25BA%25B9%25BB%25E7%25BA%25BB.JPG",
+      link: "inform-f6.html" },
+
+    { name: "예산닭갈비감자탕", category: "#한식 #닭갈비 #감자탕", rating: "⭐️ 4.3",
+      summary: "칼칼한 닭갈비와 진한 감자탕을 함께 즐길 수 있는 든든한 식당.",
+      img: "https://m.health.chosun.com/site/data/img_dir/2021/01/26/2021012602424_0.jpg",
+      link: "inform-f7.html" },
+
+    { name: "원조청학칡냉면", category: "#한식 #냉면 #수육", rating: "⭐️ 4.4",
+      summary: "쫄깃한 칡면과 살얼음 육수, 수육 조합이 인기인 냉면집.",
+      img: "https://cdn.jhealthmedia.joins.com/news/photo/202008/22193_19747_0918.jpg",
+      link: "inform-f8.html" },
+
+    { name: "보배반점 안산한양대점", category: "#중식 #짬뽕 #짜장", rating: "⭐️ 4.6",
+      summary: "고기 듬뽁 짬뽕과 짜장면이 인기인 24시간 중식당.",
+      img: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20251020_286%2F17609224192950oUg4_JPEG%2FIMG_1252_1.jpg",
+      link: "inform-f9.html" },
+
+    { name: "탕화쿵푸마라탕 한양대에리카점", category: "#중식 #마라탕 #마라샹궈", rating: "⭐️ 4.5",
+      summary: "직접 재료를 골라 담는 얼얼한 마라탕과 마라샹궈 전문점.",
+      img: "https://cdn.imweb.me/upload/S20240102311bde248187f/856f81979932b.jpeg",
+      link: "inform-f10.html" },
+
+    { name: "대홍훠궈샤브샤브 한양대점", category: "#중식 #훠궈 #샤브샤브", rating: "⭐️ 4.7",
+      summary: "홍탕·백탕 육수와 다양한 재료를 무한리필로 즐길 수 있는 훠궈 맛집.",
+      img: "https://i.namu.wiki/i/mqZingBQr80WuH3zHWSw4sKke1Ks7CR-eEZ75cDxXHcaj6vM9GXowAlhhnwx8_6xOFkQ4kF2EJB1BfCieMbBaA.webp",
+      link: "inform-f11.html" },
+
+    { name: "코운즈", category: "#일식 #라멘 #마제소바", rating: "⭐️ 4.5",
+      summary: "30시간 저온숙성 자가제면으로 만드는 라멘 전문점.",
+      img: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20240726_276%2F1721998139257MaCoj_JPEG%2F1721998068459.jpg",
+      link: "inform-f12.html" },
+
+    { name: "파앤피파스타하우스", category: "#양식 #파스타 #에리카맛집", rating: "⭐️ 4.6",
+      summary: "사이드 메뉴 풍미가 좋은 파스타 전문점.",
+      img: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20250225_116%2F1740482346534x8hgr_JPEG%2FKakaoTalk_Photo_2025-02-25-20-11-20_002.jpeg",
+      link: "inform-f13.html" },
+
+    { name: "밀플랜비 한양대에리카점", category: "#양식 #부리또 #핫도그", rating: "⭐️ 4.6",
+      summary: "부리또·핫도그를 가성비 좋게 즐길 수 있는 집.",
+      img: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20250226_220%2F17405417214426fGdm_JPEG%2FScreenshot_20220605-104848_Coupang_Eats.jpg",
+      link: "inform-f14.html" },
+
+    { name: "페퍼로니버튼 에리카점", category: "#양식 #피자 #파스타", rating: "⭐️ 4.5",
+      summary: "페퍼로니 피자가 유명한 피자 전문점.",
+      img: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20201130_295%2F1606725874428xspkf_JPEG%2FCMU-1RYFKoq_HkgMVtZCn6CG.jpeg.jpg",
+      link: "inform-f15.html" },
+
+    { name: "두루정 안산한양대점", category: "#한식 #두루치기 #짜글이", rating: "⭐️ 4.6",
+      summary: "파제육 두루치기와 짜글이가 인기인 한식 맛집.",
+      img: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20251019_87%2F1760854201317eiRbh_PNG%2FKakaoTalk_20251018_225037296_09.png",
+      link: "inform-f16.html" },
+
+    { name: "백소정 안산한양대점", category: "#일식 #카레 #돈카츠", rating: "⭐️ 4.5",
+      summary: "진한 카레와 바삭돈카츠 조합이 인기.",
+      img: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20251127_162%2F1764232259875RWGza_JPEG%2F4_%25B0%25A1%25C3%25F7%25B5%25BF.jpg",
+      link: "inform-f17.html" },
+
+    { name: "핵밥 안산한양대점", category: "#일식 #라멘 #덮밥", rating: "⭐️ 4.6",
+      summary: "라멘과 덮밥을 즐길 수 있는 캐주얼 일식 맛집.",
+      img: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20251201_127%2F1764549933593Aeo04_JPEG%2F3.jpg",
+      link: "inform-f18.html" }
 ];
 
-/* 랜덤 추천 함수 */
+/* 🔥 랜덤 추천 실행 */
 function pickRandom() {
     const r = restaurants[Math.floor(Math.random() * restaurants.length)];
 
@@ -392,7 +465,7 @@ function pickRandom() {
     document.getElementById("recDetail").href = r.link;
 }
 
-pickRandom();  // 페이지 열리면 바로 1개 추천
+pickRandom();  // 페이지 켜지면 바로 1개 추천
 </script>
 <script src="darkmode.js"></script>
 </body>
