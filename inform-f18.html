@@ -45,6 +45,43 @@
             background: #ffb300;
         }
 
+        /* 🟢 제휴 업체 스위치 */
+        #partner-switch {
+            position: fixed;
+            top: 20px;
+            right: 120px;
+            width: 85px;
+            height: 130px;
+            background: #ffffff;
+            border-radius: 45px;
+            border: 3px solid #4ade80;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 12px;
+            cursor: grab;
+            user-select: none;
+            z-index: 2000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+        }
+
+        #partner-switch .switch-handle {
+            width: 70%;
+            height: 45px;
+            background: #86efac;
+            border-radius: 22px;
+            text-align: center;
+            font-size: 15px;
+            color: #333;
+            line-height: 45px;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+
+        #partner-switch.dragging .switch-handle {
+            background: #4ade80;
+        }
+
         /* 페이지네이션 공통 */
         .pagination {
             margin: 30px auto;
@@ -72,8 +109,10 @@
     <div class="switch-handle">이건어때▼</div>
 </div>
 
-    </head>
-    <body>
+<!-- 🟢 제휴 업체 스위치 -->
+<div id="partner-switch">
+    <div class="switch-handle">제휴업체▼</div>
+</div>
 
 <header>
     <div class="header-container">
@@ -93,7 +132,6 @@
 <main class="container detail-page">
     <section class="detail-card">
         <div class="detail-top">
-            
             <img class="detail-image"
                  src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20251201_127%2F1764549933593Aeo04_JPEG%2F3.jpg"
                  alt="핵밥 안산한양대점 대표 사진">
@@ -141,7 +179,6 @@
                 <div class="menu-column">
                     <h4>덮밥</h4>
                     <ul class="menu-list">
-
                         <li>
                             <div class="menu-text">
                                 <span class="menu-name">큐브스테이크덮밥</span>
@@ -236,7 +273,6 @@
 
                 <!-- 오른쪽 컬럼: 라멘/우동/소바/돈카츠 -->
                 <div class="menu-column">
-
                     <h4>라멘</h4>
                     <ul class="menu-list">
                         <li>
@@ -327,7 +363,7 @@
 </a>
 
 <script>
-    /* 🔥 드래그 스위치 기능 (공통) */
+/* 🔥 이건어때 스위치 드래그 */
 const switchBox = document.getElementById("recommend-switch");
 const handle = switchBox.querySelector(".switch-handle");
 let isDragging = false;
@@ -356,6 +392,37 @@ document.addEventListener("mouseup", () => {
     isDragging = false;
     switchBox.classList.remove("dragging");
     handle.style.transform = "translateY(0)";
+});
+
+/* 🟢 제휴업체 스위치 드래그 */
+const partnerBox = document.getElementById("partner-switch");
+const partnerHandle = partnerBox.querySelector(".switch-handle");
+let partnerDrag = false;
+let partnerStart = 0;
+
+partnerHandle.addEventListener("mousedown", (e) => {
+    partnerDrag = true;
+    partnerStart = e.clientY;
+    partnerBox.classList.add("dragging");
+});
+
+document.addEventListener("mousemove", (e) => {
+    if (!partnerDrag) return;
+    let moveY = e.clientY - partnerStart;
+
+    if (moveY > 0 && moveY < 90) {
+        partnerHandle.style.transform = `translateY(${moveY}px)`;
+    }
+
+    if (moveY >= 90) {
+        window.location.href = "partner-drink.html";
+    }
+});
+
+document.addEventListener("mouseup", () => {
+    partnerDrag = false;
+    partnerBox.classList.remove("dragging");
+    partnerHandle.style.transform = "translateY(0)";
 });
 </script>
 
